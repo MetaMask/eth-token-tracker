@@ -1,0 +1,33 @@
+{
+  "name": "token-tracker",
+  "version": "1.0.0",
+  "description": "A module for tracking Ethereum token balances over block changes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flyswatter/eth-token-tracker.git"
+  },
+  "keywords": [
+    "ethereum",
+    "tokens"
+  ],
+  "author": "Dan Finlay <dan@danfinlay.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flyswatter/eth-token-tracker/issues"
+  },
+  "homepage": "https://github.com/flyswatter/eth-token-tracker#readme",
+  "dependencies": {
+    "ethjs-contract": "^0.1.9",
+    "ethjs-query": "^0.2.6",
+    "human-standard-token-abi": "^1.0.2"
+  },
+  "devDependencies": {
+    "ethereumjs-testrpc": "^3.0.3",
+    "solc": "^0.4.10",
+    "tape": "^4.6.3"
+  }
+}
