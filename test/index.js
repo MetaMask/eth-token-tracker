@@ -46,7 +46,6 @@ test('publishing token & checking balance', function (t) {
     })
   })
   .then((txHash) => {
-
     return eth.getTransactionReceipt(txHash)
   })
   .then((receipt) => {
@@ -71,6 +70,7 @@ test('balances are tracked', function (t) {
   var tokenTracker = new TokenTracker({
     userAddress: addresses[0],
     provider,
+    pollingInterval: 20,
     tokens: [
       {
         address: tokenAddress,
@@ -88,7 +88,8 @@ test('balances are tracked', function (t) {
     return eth.getTransactionReceipt(txHash)
   })
   .then((receipt) => {
-    return tokenTracker.updateBalances()
+    var a = new Promise((res, rej) => { setTimeout(res, 200) })
+    return a
   })
   .then(() => {
     t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
