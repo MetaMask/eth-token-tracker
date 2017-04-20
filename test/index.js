@@ -34,7 +34,10 @@ test('publishing token & checking balance', function (t) {
     gas: '3000000',
     gasPrice: '30000',
   })
-  const humanStandardToken = HumanStandardToken.new('100', 'DanBucks', '1', 'DBX')
+  const humanStandardToken = HumanStandardToken.new('1000',
+                                                    'DanBucks',
+                                                    '2', // decimals
+                                                    'DBX')
   .then((txHash) => {
     t.ok(txHash, 'publishes a txHash')
 
@@ -54,7 +57,7 @@ test('publishing token & checking balance', function (t) {
   })
   .then((res) => {
     const balance = res[0]
-    t.equal(balance.toString(10), '100', 'owner should have all')
+    t.equal(balance.toString(10), '1000', 'owner should have all')
     t.end()
   })
   .catch((reason) => {
@@ -78,8 +81,8 @@ test('balances are tracked', function (t) {
 
   var a = new Promise((res, rej) => { setTimeout(res, 200) })
   a.then(() => {
-    t.equal(tracked.balance.toString(10), '100', 'initial balance loaded')
-    return token.transfer(addresses[1], '1')
+    t.equal(tracked.balance.toString(10), '1000', 'initial balance loaded')
+    return token.transfer(addresses[1], '110')
   })
   .then((txHash) => {
     return eth.getTransactionReceipt(txHash)
@@ -90,7 +93,14 @@ test('balances are tracked', function (t) {
   .then(() => {
     t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
     t.equal(tracked.address, tokenAddress, 'token address set')
-    t.equal(tracked.balance.toString(10), '99', 'tokens sent')
+    t.equal(tracked.balance.toString(10), '890', 'tokens sent')
+
+    const data = tracked.serialize()
+    t.equal(data.string, '8.90', 'represents decimals')
+
+    const serialized = tokenTracker.serialize()
+    t.equal(serialized[0].string, data.string, 'serializes data')
+
     t.end()
   })
   .catch((reason) => {

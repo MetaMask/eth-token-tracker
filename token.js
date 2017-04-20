@@ -15,7 +15,26 @@ class Token {
     Promise.all([
       this.updateSymbol(),
       this.updateBalance(),
+      this.updateDecimals(),
     ])
+  }
+
+  serialize() {
+    return {
+      address: this.address,
+      symbol: this.symbol,
+      balance: this.balance.toString(10),
+      decimals: this.decimals,
+      string: this.stringify(),
+    }
+  }
+
+  stringify() {
+    let bal = this.balance.toString()
+    let decimals = this.decimals
+    const len = bal.length
+    const result = `${bal.substr(0, len - decimals)}.${bal.substr(decimals - 1)}`
+    return result
   }
 
   updateSymbol() {
@@ -37,6 +56,17 @@ class Token {
     })
     .catch((reason) => {
       console.error('failed to load token balance', reason)
+    })
+  }
+
+  updateDecimals() {
+    return this.contract.decimals()
+    .then((result) => {
+      this.decimals = parseInt(result[0].toString())
+      return this.decimals
+    })
+    .catch((reason) => {
+      console.error('failed to load token decimals', reason)
     })
   }
 

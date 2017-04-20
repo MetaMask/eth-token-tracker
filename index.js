@@ -28,6 +28,10 @@ class TokenTracker {
     })
   }
 
+  serialize() {
+    return this.tokens.map(token => token.serialize())
+  }
+
   updateBalances() {
     return Promise.all(this.tokens.map((token) => {
       return token.updateBalance()
