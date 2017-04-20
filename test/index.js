@@ -113,3 +113,91 @@ test('balances are tracked', function (t) {
 
 })
 
+test('balance changes are emitted', function (t) {
+
+  var tokenTracker = new TokenTracker({
+    userAddress: addresses[0],
+    provider,
+    pollingInterval: 20,
+    tokens: [
+      {
+        address: tokenAddress,
+      }
+    ],
+  })
+  tracked = tokenTracker.tokens[0]
+
+  let updateCounter = 0
+  tokenTracker.on('update', (data) => {
+    const tracked = data[0]
+
+    updateCounter++
+    if (updateCounter < 2) {
+      return t.equal(tracked.string, '8.90', 'initial balance loaded from last test')
+    }
+
+    t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
+    t.equal(tracked.string, '7.90', 'balance updated')
+    tokenTracker.stop()
+    t.end()
+  })
+
+  var a = new Promise((res, rej) => { setTimeout(res, 200) })
+  a.then(() => {
+    return token.transfer(addresses[1], '100')
+  })
+  .catch((reason) => {
+    t.notOk(reason, 'should not throw an error')
+    tokenTracker.stop()
+    t.end()
+  })
+})
+
+test('non balance changes are not emitted', function (t) {
+
+  var tokenTracker = new TokenTracker({
+    userAddress: addresses[0],
+    provider,
+    pollingInterval: 20,
+    tokens: [
+      {
+        address: tokenAddress,
+      }
+    ],
+  })
+  tracked = tokenTracker.tokens[0]
+
+  let updateCounter = 0
+  tokenTracker.on('update', (data) => {
+    const tracked = data[0]
+
+    updateCounter++
+    if (updateCounter < 2) {
+      return t.equal(tracked.string, '7.90', 'initial balance loaded from last test')
+    }
+
+    t.notOk(true, 'a second event should not have fired')
+    tokenTracker.stop()
+    t.end()
+  })
+
+  var a = new Promise((res, rej) => { setTimeout(res, 200) })
+  a.then(() => {
+    return token.transfer(addresses[1], '0')
+  })
+  .then(() => {
+    var a = new Promise((res, rej) => { setTimeout(res, 200) })
+    return a
+  })
+  .then(() => {
+    t.ok(true, 'time passed, no new events were fired.')
+    tokenTracker.stop()
+    t.end()
+  })
+  .catch((reason) => {
+    t.notOk(reason, 'should not throw an error')
+    tokenTracker.stop()
+    t.end()
+  })
+})
+

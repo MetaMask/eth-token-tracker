@@ -3,10 +3,14 @@ const EthContract = require('ethjs-contract')
 const Token = require('./token')
 const BlockTracker = require('eth-block-tracker')
 const abi = require('human-standard-token-abi')
+const EventEmitter = require('events').EventEmitter
+const deepEqual = require('deep-equal')
 
-class TokenTracker {
+class TokenTracker extends EventEmitter {
 
   constructor (opts = {}) {
+    super()
+
     this.userAddress = opts.userAddress || '0x0'
     this.provider = opts.provider
     const pollingInterval = opts.pollingInterval || 4000
@@ -37,9 +41,16 @@ class TokenTracker {
   }
 
   updateBalances() {
+    const oldBalances = this.serialize()
     return Promise.all(this.tokens.map((token) => {
       return token.updateBalance()
     }))
+    .then(() => {
+      const newBalances = this.serialize()
+      if (!deepEqual(newBalances, oldBalances)) {
+        this.emit('update', newBalances)
+      }
+    })
   }
 
   stop(){
