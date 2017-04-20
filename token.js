@@ -4,6 +4,7 @@ class Token {
 
   constructor (opts = {}) {
     const { address, symbol, balance, decimals, contract, owner } = opts
+    this.isLoading = !address || !symbol || !balance || !decimals
     this.address = address || '0x0'
     this.symbol  = symbol || 'TKN'
     this.balance = new BN(balance || '0', 16)
@@ -11,12 +12,19 @@ class Token {
     this.owner = owner
 
     this.contract = contract
+    this.update()
+  }
 
-    Promise.all([
+  update() {
+    return Promise.all([
       this.updateSymbol(),
       this.updateBalance(),
       this.updateDecimals(),
     ])
+    .then((results) => {
+      this.isLoading = false
+      return results
+    })
   }
 
   serialize() {
