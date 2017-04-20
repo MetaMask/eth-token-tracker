@@ -29,6 +29,7 @@ class TokenTracker {
     })
 
     this.blockTracker.on('latest', this.updateBalances.bind(this))
+    this.blockTracker.start()
   }
 
   serialize() {
@@ -41,6 +42,9 @@ class TokenTracker {
     }))
   }
 
+  stop(){
+    this.blockTracker.stop()
+  }
 }
 
 module.exports = TokenTracker

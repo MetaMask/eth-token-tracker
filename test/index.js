@@ -102,10 +102,12 @@ test('balances are tracked', function (t) {
     const serialized = tokenTracker.serialize()
     t.equal(serialized[0].string, data.string, 'serializes data')
 
+    tokenTracker.stop()
     t.end()
   })
   .catch((reason) => {
     t.notOk(reason, 'should not throw an error')
+    tokenTracker.stop()
     t.end()
   })
 
