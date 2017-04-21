@@ -47,15 +47,27 @@ class Token {
   }
 
   async updateSymbol() {
-    return this.updateValue('symbol')
+    const symbol = await this.updateValue('symbol')
+    if (symbol) {
+      this.symbol = symbol
+    }
+    return this.symbol
   }
 
   async updateBalance() {
-    return this.updateValue('balance')
+    const balance = await this.updateValue('balance')
+    if (balance) {
+      this.balance = balance
+    }
+    return this.balance
   }
 
   async updateDecimals() {
-    return this.updateValue('decimals')
+    var decimals = await this.updateValue('decimals')
+    if (decimals) {
+      this.decimals = decimals
+    }
+    return this.decimals
   }
 
   async updateValue(value) {
@@ -83,7 +95,6 @@ class Token {
 
     if (result) {
       const val = result[0]
-      this[value] = val
     }
     return this[value]
   }
