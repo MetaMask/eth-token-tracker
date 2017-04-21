@@ -1,4 +1,5 @@
 const BN = require('ethjs').BN
+const zero = new BN(0)
 
 class Token {
 
@@ -39,6 +40,9 @@ class Token {
   }
 
   stringify() {
+    if (this.balance.eq(zero)) {
+      return '0'
+    }
     let bal = this.balance.toString()
     let decimals = parseInt(this.decimals.toString())
     const len = bal.length
@@ -56,9 +60,7 @@ class Token {
 
   async updateBalance() {
     const balance = await this.updateValue('balance')
-    if (balance) {
-      this.balance = balance
-    }
+    this.balance = balance
     return this.balance
   }
 
@@ -95,6 +97,7 @@ class Token {
 
     if (result) {
       const val = result[0]
+      return val
     }
     return this[value]
   }

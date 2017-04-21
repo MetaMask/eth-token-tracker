@@ -85,6 +85,7 @@ test('StandardToken balances are tracked', function (t) {
 
   var a = new Promise((res, rej) => { setTimeout(res, 200) })
   a.then(() => {
+    tracked = tokenTracker.serialize()[0]
     t.equal(tracked.balance.toString(10), qty, 'initial balance loaded')
     return token.transfer(addresses[1], less)
   })
