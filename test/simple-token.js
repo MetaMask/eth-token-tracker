@@ -100,16 +100,14 @@ test('StandardToken balances are tracked', function (t) {
     const bnFull = new BN(qty)
     const bnLess = new BN(less)
     const should = bnFull.sub(bnLess).toString()
+    tracked = tokenTracker.serialize()[0]
 
     t.equal(tracked.symbol, 'MKR', 'initial symbol assumed')
+    t.equal(tracked.decimals, 18, 'initial decimals retained')
     t.equal(tracked.address, tokenAddress, 'token address set')
     t.equal(tracked.balance.toString(10), should, 'tokens sent')
 
-    const data = tracked.serialize()
-    t.ok(data.string.indexOf('90.0') === 0, 'represents decimals')
-
-    const serialized = tokenTracker.serialize()
-    t.equal(serialized[0].string, data.string, 'serializes data')
+    t.ok(tracked.string.indexOf('90.0') === 0, 'represents decimals')
 
     tokenTracker.stop()
     t.end()

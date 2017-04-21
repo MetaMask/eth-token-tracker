@@ -8,7 +8,7 @@ class Token {
     this.address = address || '0x0'
     this.symbol  = symbol || 'TKN'
     this.balance = new BN(balance || '0', 16)
-    this.decimals = decimals || 0
+    this.decimals = new BN(decimals || 0)
     this.owner = owner
 
     this.contract = contract
@@ -33,14 +33,14 @@ class Token {
       address: this.address,
       symbol: this.symbol,
       balance: this.balance.toString(10),
-      decimals: this.decimals,
+      decimals: parseInt(this.decimals.toString()),
       string: this.stringify(),
     }
   }
 
   stringify() {
     let bal = this.balance.toString()
-    let decimals = this.decimals
+    let decimals = parseInt(this.decimals.toString())
     const len = bal.length
     const result = `${bal.substr(0, len - decimals)}.${bal.substr(decimals - 1)}`
     return result
