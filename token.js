@@ -1,4 +1,5 @@
 const BN = require('ethjs').BN
+const zero = new BN(0)
 
 class Token {
 
@@ -8,23 +9,24 @@ class Token {
     this.address = address || '0x0'
     this.symbol  = symbol || 'TKN'
     this.balance = new BN(balance || '0', 16)
-    this.decimals = decimals || 0
+    this.decimals = new BN(decimals || 0)
     this.owner = owner
 
     this.contract = contract
     this.update()
+    .catch((reason) => {
+      console.error('token updating failed', reason)
+    })
   }
 
-  update() {
-    return Promise.all([
+  async update() {
+    const results = await Promise.all([
       this.updateSymbol(),
       this.updateBalance(),
       this.updateDecimals(),
     ])
-    .then((results) => {
-      this.isLoading = false
-      return results
-    })
+    this.isLoading = false
+    return results
   }
 
   serialize() {
@@ -32,50 +34,72 @@ class Token {
       address: this.address,
       symbol: this.symbol,
       balance: this.balance.toString(10),
-      decimals: this.decimals,
+      decimals: parseInt(this.decimals.toString()),
       string: this.stringify(),
     }
   }
 
   stringify() {
+    if (this.balance.eq(zero)) {
+      return '0'
+    }
     let bal = this.balance.toString()
-    let decimals = this.decimals
+    let decimals = parseInt(this.decimals.toString())
     const len = bal.length
     const result = `${bal.substr(0, len - decimals)}.${bal.substr(decimals - 1)}`
     return result
   }
 
-  updateSymbol() {
-    this.contract.symbol()
-    .then((result) => {
-      this.symbol = result[0]
-      return this.symbol
-    })
-    .catch((reason) => {
-      console.error('failed to load token symbol', reason)
-    })
+  async updateSymbol() {
+    const symbol = await this.updateValue('symbol')
+    if (symbol) {
+      this.symbol = symbol
+    }
+    return this.symbol
   }
 
-  updateBalance() {
-    return this.contract.balanceOf(this.owner)
-    .then((result) => {
-      this.balance = result[0]
-      return this.balance
-    })
-    .catch((reason) => {
-      console.error('failed to load token balance', reason)
-    })
+  async updateBalance() {
+    const balance = await this.updateValue('balance')
+    this.balance = balance
+    return this.balance
   }
 
-  updateDecimals() {
-    return this.contract.decimals()
-    .then((result) => {
-      this.decimals = parseInt(result[0].toString())
-      return this.decimals
-    })
-    .catch((reason) => {
-      console.error('failed to load token decimals', reason)
-    })
+  async updateDecimals() {
+    var decimals = await this.updateValue('decimals')
+    if (decimals) {
+      this.decimals = decimals
+    }
+    return this.decimals
+  }
+
+  async updateValue(value) {
+    let methodName
+    let args = []
+
+    switch (value) {
+      case 'balance':
+        methodName = 'balanceOf'
+        args = [ this.owner ]
+        break
+      default:
+        methodName = value
+    }
+
+    let result
+    try {
+      result = await this.contract[methodName](...args)
+    } catch (e) {
+      console.warn(`failed to load token ${value} for ${this.address}`)
+      if (value === 'balance') {
+        throw e
+      }
+    }
+
+    if (result) {
+      const val = result[0]
+      return val
+    }
+    return this[value]
   }
 
 }
