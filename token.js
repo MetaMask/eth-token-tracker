@@ -13,6 +13,9 @@ class Token {
 
     this.contract = contract
     this.update()
+    .catch((reason) => {
+      console.error('token updating failed', reason)
+    })
   }
 
   async update() {
@@ -72,7 +75,10 @@ class Token {
     try {
       result = await this.contract[methodName](...args)
     } catch (e) {
-      console.warn(`failed to load token ${value} for ${this.address}`, e)
+      console.warn(`failed to load token ${value} for ${this.address}`)
+      if (value === 'balance') {
+        throw e
+      }
     }
 
     if (result) {

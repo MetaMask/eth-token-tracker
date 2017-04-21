@@ -137,9 +137,7 @@ contract SimpleToken is StandardToken {
         throw;
     }
 
-    string public name;                   //fancy name: eg Simon Bucks
-
-    function HumanStandardToken(
+    function SimpleToken(
         uint256 _initialAmount
         ) {
         balances[msg.sender] = _initialAmount;               // Give the creator all initial tokens
