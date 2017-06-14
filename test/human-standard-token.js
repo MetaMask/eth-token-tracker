@@ -96,7 +96,7 @@ test('HumanStandardToken balances are tracked', function (t) {
     t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
     t.equal(tracked.address, tokenAddress, 'token address set')
     t.equal(tracked.balance.toString(10), '890', 'tokens sent')
-    t.equal(tracked.decimals, 2, 'decimals received')
+    t.equal(tracked.decimals.toString(), '2', 'decimals received')
 
     const data = tracked.serialize()
     t.equal(data.string, '8.90', 'represents decimals')

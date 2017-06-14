@@ -1,6 +1,6 @@
 {
   "name": "eth-token-tracker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "ethereumjs-testrpc": "^3.0.4",
+    "ethjs": "^0.2.7",
     "solc": "^0.4.10",
     "tape": "^4.6.3",
     "web3-provider-engine": "^12.0.0"
