@@ -32,6 +32,7 @@ class TokenTracker extends EventEmitter {
       return new Token({ address, symbol, balance, decimals, contract, owner })
     })
 
+    this.running = true
     this.blockTracker.on('latest', this.updateBalances.bind(this))
     this.blockTracker.start()
   }
@@ -40,7 +41,7 @@ class TokenTracker extends EventEmitter {
     return this.tokens.map(token => token.serialize())
   }
 
-  updateBalances() {
+  async updateBalances() {
     const oldBalances = this.serialize()
     return Promise.all(this.tokens.map((token) => {
       return token.updateBalance()
@@ -48,12 +49,15 @@ class TokenTracker extends EventEmitter {
     .then(() => {
       const newBalances = this.serialize()
       if (!deepEqual(newBalances, oldBalances)) {
-        this.emit('update', newBalances)
+        if (this.running) {
+          this.emit('update', newBalances)
+        }
       }
     })
   }
 
   stop(){
+    this.running = false
     this.blockTracker.stop()
   }
 }

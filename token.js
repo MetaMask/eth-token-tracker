@@ -72,25 +72,25 @@ class Token {
     return this.decimals
   }
 
-  async updateValue(value) {
+  async updateValue(key) {
     let methodName
     let args = []
 
-    switch (value) {
+    switch (key) {
       case 'balance':
         methodName = 'balanceOf'
         args = [ this.owner ]
         break
       default:
-        methodName = value
+        methodName = key
     }
 
     let result
     try {
       result = await this.contract[methodName](...args)
     } catch (e) {
-      console.warn(`failed to load token ${value} for ${this.address}`)
-      if (value === 'balance') {
+      console.warn(`failed to load ${key} for token at ${this.address}`)
+      if (key === 'balance') {
         throw e
       }
     }
@@ -99,7 +99,8 @@ class Token {
       const val = result[0]
       return val
     }
-    return this[value]
+
+    return this[key]
   }
 
 }
