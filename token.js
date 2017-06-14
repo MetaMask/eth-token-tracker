@@ -65,6 +65,7 @@ class Token {
   }
 
   async updateDecimals() {
+    if (this.decimals !== undefined) return this.decimals
     var decimals = await this.updateValue('decimals')
     if (decimals) {
       this.decimals = decimals
