@@ -1,5 +1,5 @@
 const BN = require('ethjs').BN
-const zero = new BN(0)
+const util = require('./util')
 
 class Token {
 
@@ -40,14 +40,7 @@ class Token {
   }
 
   stringify() {
-    if (this.balance.eq(zero)) {
-      return '0'
-    }
-    let bal = this.balance.toString()
-    let decimals = parseInt(this.decimals.toString())
-    const len = bal.length
-    const result = `${bal.substr(0, len - decimals)}.${bal.substr(decimals - 1)}`
-    return result
+    return util.stringifybalance(this.balance, this.decimals)
   }
 
   async updateSymbol() {
