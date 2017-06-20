@@ -40,7 +40,7 @@ class Token {
   }
 
   stringify() {
-    return util.stringifybalance(this.balance, this.decimals)
+    return util.stringifyBalance(this.balance, this.decimals)
   }
 
   async updateSymbol() {
