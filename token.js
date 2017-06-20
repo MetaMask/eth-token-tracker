@@ -9,7 +9,7 @@ class Token {
     this.address = address || '0x0'
     this.symbol  = symbol || 'TKN'
     this.balance = new BN(balance || '0', 16)
-    this.decimals = new BN(decimals || 0)
+    this.decimals = decimals ? new BN(decimals) : undefined
     this.owner = owner
 
     this.contract = contract
@@ -34,13 +34,13 @@ class Token {
       address: this.address,
       symbol: this.symbol,
       balance: this.balance.toString(10),
-      decimals: parseInt(this.decimals.toString()),
+      decimals: this.decimals ? parseInt(this.decimals.toString()) : 0,
       string: this.stringify(),
     }
   }
 
   stringify() {
-    return util.stringifyBalance(this.balance, this.decimals)
+    return util.stringifyBalance(this.balance, this.decimals || new BN(0))
   }
 
   async updateSymbol() {
@@ -91,6 +91,7 @@ class Token {
 
     if (result) {
       const val = result[0]
+      this[key] = val
       return val
     }
 

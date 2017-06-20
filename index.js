@@ -54,6 +54,9 @@ class TokenTracker extends EventEmitter {
         }
       }
     })
+    .catch((reason) => {
+      this.emit('error', reason)
+    })
   }
 
   stop(){
