@@ -26,10 +26,7 @@ class TokenTracker extends EventEmitter {
     const tokens = opts.tokens || []
 
     this.tokens = tokens.map((tokenOpts) => {
-      const owner = this.userAddress
-      const { address, symbol, balance, decimals } = tokenOpts
-      const contract = this.TokenContract.at(address)
-      return new Token({ address, symbol, balance, decimals, contract, owner })
+      return this.createTokenFrom(tokenOpts)
     })
 
     this.running = true
@@ -57,6 +54,18 @@ class TokenTracker extends EventEmitter {
     .catch((reason) => {
       this.emit('error', reason)
     })
+  }
+
+  createTokenFrom (opts) {
+    const owner = this.userAddress
+    const { address, symbol, balance, decimals } = opts
+    const contract = this.TokenContract.at(address)
+    return new Token({ address, symbol, balance, decimals, contract, owner })
+  }
+
+  add(opts) {
+    const token = this.createTokenFrom(opts)
+    this.tokens.push(token)
   }
 
   stop(){
