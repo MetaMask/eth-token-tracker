@@ -207,3 +207,22 @@ test('StandardToken non balance changes are not emitted', function (t) {
     t.end()
   })
 })
+
+test('StandardToken able to add new tokens', function (t) {
+
+  var tokenTracker = new TokenTracker({
+    userAddress: addresses[0],
+    provider,
+    pollingInterval: 20,
+    tokens: [],
+  })
+
+  tokenTracker.on('update', (data) => {
+    const tracked = data[0]
+    t.equal(tracked.address, tokenAddress, 'token was added')
+    tokenTracker.stop()
+    t.end()
+  })
+
+  tokenTracker.add({ address: tokenAddress })
+})

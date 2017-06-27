@@ -33,6 +33,9 @@ tokenTracker.on('update', function (balances) {
   console.log(`Your balance of ${balances[0].symbol} is ${balances[0].string}`)
 })
 
+// You can add additional tokens after initialization:
+tokenTracker.add({ address: otherTokenAddress })
+
 // Make sure to clean up, or it will hold a reference:
 tokenTracker.stop()
 ```
