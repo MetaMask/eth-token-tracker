@@ -1,6 +1,6 @@
 const test = require('tape')
 const BN = require('ethjs').BN
-const util = require('../util')
+const util = require('../lib/util')
 
 test('token balance stringify 1', function (t) {
   const hex = '000000000000000000000000000000000000000000000000119f00ef7cc00ee4'

@@ -4,7 +4,7 @@ const provider = TestRPC.provider()
 const ProviderEngine = require('web3-provider-engine')
 const fs = require('fs')
 const solc = require('solc')
-const TokenTracker = require('../')
+const TokenTracker = require('../lib')
 const BN = require('ethjs').BN
 
 const Eth = require('ethjs-query')
