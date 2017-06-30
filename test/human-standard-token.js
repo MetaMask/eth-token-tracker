@@ -16,6 +16,9 @@ const source = fs.readFileSync(__dirname + '/contracts/Token.sol').toString();
 const compiled = solc.compile(source, 1)
 const HumanStandardDeployer = compiled.contracts[':HumanStandardToken']
 
+const SET_SYMBOL = 'DBX'
+const EXPECTED_SYMBOL = 'EXP'
+
 let addresses = []
 let token, tokenAddress, tracked
 
@@ -38,7 +41,7 @@ test('HumanStandardToken publishing token & checking balance', function (t) {
   const humanStandardToken = HumanStandardToken.new('1000',
                                                     'DanBucks',
                                                     '2', // decimals
-                                                    'DBX')
+                                                    SET_SYMBOL)
   .then((txHash) => {
     t.ok(txHash, 'publishes a txHash')
 
@@ -75,6 +78,7 @@ test('HumanStandardToken balances are tracked', function (t) {
     tokens: [
       {
         address: tokenAddress,
+        symbol: EXPECTED_SYMBOL,
       }
     ],
   })
@@ -93,7 +97,7 @@ test('HumanStandardToken balances are tracked', function (t) {
     return a
   })
   .then(() => {
-    t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
+    t.equal(tracked.symbol, EXPECTED_SYMBOL, 'symbol cached')
     t.equal(tracked.address, tokenAddress, 'token address set')
     t.equal(tracked.balance.toString(10), '890', 'tokens sent')
     t.equal(tracked.decimals.toString(), '2', 'decimals received')
@@ -138,7 +142,7 @@ test('HumanStandardToken balance changes are emitted', function (t) {
       return t.equal(tracked.string, '8.90', 'initial balance loaded from last test')
     }
 
-    t.equal(tracked.symbol, 'DBX', 'symbol retrieved')
+    t.equal(tracked.symbol, SET_SYMBOL, 'symbol retrieved')
     t.equal(tracked.string, '7.90', 'balance updated')
     tokenTracker.stop()
     t.end()

@@ -121,7 +121,7 @@ test('StandardToken balances are tracked', function (t) {
 
 })
 
-test('StandardToken balance changes are emitted', function (t) {
+test('StandardToken balance changes are emitted and symbol fetched', function (t) {
 
   var tokenTracker = new TokenTracker({
     userAddress: addresses[0],
