@@ -45,7 +45,6 @@ class Token {
 
   async updateSymbol() {
     const symbol = await this.updateValue('symbol')
-    console.dir({ symbol })
     this.symbol = symbol || 'TKN'
     return this.symbol
   }
