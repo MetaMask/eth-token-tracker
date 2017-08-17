@@ -150,9 +150,10 @@ contract TutorialToken is StandardToken {
     uint public decimals = 2;
     uint public INITIAL_SUPPLY = 10000;
 
-    function TutorialToken() {
-        totalSupply = INITIAL_SUPPLY;
-        balances[msg.sender] = INITIAL_SUPPLY;
+    function TutorialToken(uint _initialSupply, uint _decimals) {
+        totalSupply = _initialSupply;
+        balances[msg.sender] = _initialSupply;
+        decimals = _decimals;
     }
 }
 
