@@ -42,10 +42,20 @@ generateTestWithParams({
 
 generateTestWithParams({
   quantity: '120',
+  precision: 4,
+  result: function (token, t) {
+    t.equal(tracked.decimals, 4, 'initial decimals retained')
+    t.equal(tracked.string, '0.012', 'represents decimals')
+    t.end()
+  },
+})
+
+generateTestWithParams({
+  quantity: '120',
   precision: 18,
   result: function (token, t) {
     t.equal(tracked.decimals, 18, 'initial decimals retained')
-    t.equal(tracked.string, '0.00', 'represents decimals')
+    t.equal(tracked.string, '0.000', 'represents decimals')
     t.end()
   },
 })
