@@ -1,4 +1,4 @@
-# Eth Token Tracker
+# Eth Token Tracker [![CircleCI](https://circleci.com/gh/MetaMask/eth-token-tracker/tree/master.svg?style=svg)](https://circleci.com/gh/MetaMask/eth-token-tracker/tree/master)
 
 A JS module for tracking Ethereum tokens and their values over time.
 
