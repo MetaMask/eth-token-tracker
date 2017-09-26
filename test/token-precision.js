@@ -60,6 +60,15 @@ generateTestWithParams({
   },
 })
 
+generateTestWithParams({
+  quantity: '2179663820576',
+  precision: 18,
+  result: function (token, t) {
+    t.equal(tracked.decimals, 18, 'initial decimals retained')
+    t.equal(tracked.string, '0.000', 'represents decimals')
+    t.end()
+  },
+})
 
 function generateTestWithParams(opts = {}) {
   const qty = opts.quantity || '10000'
