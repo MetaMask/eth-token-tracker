@@ -6,6 +6,7 @@ const fs = require('fs')
 const solc = require('solc')
 const TokenTracker = require('../lib')
 const BN = require('ethjs').BN
+const util = require('../lib/util')
 
 const Eth = require('ethjs-query')
 const EthContract = require('ethjs-contract')
@@ -60,6 +61,7 @@ generateTestWithParams({
   },
 })
 
+// Test for MetaMask Issue #2162
 generateTestWithParams({
   quantity: '2179663820576',
   precision: 18,
@@ -68,6 +70,25 @@ generateTestWithParams({
     t.equal(tracked.string, '0.000', 'represents decimals')
     t.end()
   },
+})
+
+// Test for MetaMask Issue #2162
+generateTestWithParams({
+  quantity: '279290',
+  precision: 18,
+  result: function (token, t) {
+    t.equal(tracked.decimals, 18, 'initial decimals retained')
+    t.equal(tracked.string, '0.000', 'represents decimals')
+    t.end()
+  },
+})
+
+test('Precision rendering test for issue 2162', function (t) {
+  const quantity = new BN('279290')
+  const precision = new BN('18')
+  const string = util.stringifyBalance(quantity, precision)
+  t.equal(string, '0.000', 'represents decimals')
+  t.end()
 })
 
 function generateTestWithParams(opts = {}) {
