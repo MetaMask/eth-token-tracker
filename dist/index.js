@@ -70,7 +70,7 @@ var TokenTracker = function (_EventEmitter) {
     });
 
     _this.running = true;
-    _this.blockTracker.on('latest', _this.updateBalances.bind(_this));
+    _this.blockTracker.on('latest', _this.updateTokens.bind(_this));
     _this.blockTracker.start();
     return _this;
   }
@@ -83,7 +83,7 @@ var TokenTracker = function (_EventEmitter) {
       });
     }
   }, {
-    key: 'updateBalances',
+    key: 'updateTokens',
     value: function () {
       var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
         var _this2 = this;
@@ -95,7 +95,7 @@ var TokenTracker = function (_EventEmitter) {
               case 0:
                 oldBalances = this.serialize();
                 return _context.abrupt('return', _promise2.default.all(this.tokens.map(function (token) {
-                  return token.updateBalance();
+                  return token.update();
                 })).then(function () {
                   var newBalances = _this2.serialize();
                   if (!deepEqual(newBalances, oldBalances)) {
@@ -115,11 +115,11 @@ var TokenTracker = function (_EventEmitter) {
         }, _callee, this);
       }));
 
-      function updateBalances() {
+      function updateTokens() {
         return _ref.apply(this, arguments);
       }
 
-      return updateBalances;
+      return updateTokens;
     }()
   }, {
     key: 'createTokenFrom',
@@ -128,10 +128,12 @@ var TokenTracker = function (_EventEmitter) {
       var address = opts.address,
           symbol = opts.symbol,
           balance = opts.balance,
-          decimals = opts.decimals;
+          decimals = opts.decimals,
+          allowance = opts.allowance,
+          spender = opts.spender;
 
       var contract = this.TokenContract.at(address);
-      return new Token({ address: address, symbol: symbol, balance: balance, decimals: decimals, contract: contract, owner: owner });
+      return new Token({ address: address, symbol: symbol, balance: balance, decimals: decimals, contract: contract, owner: owner, allowance: allowance, spender: spender });
     }
   }, {
     key: 'add',

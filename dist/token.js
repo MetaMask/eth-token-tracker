@@ -38,7 +38,9 @@ var Token = function () {
         balance = opts.balance,
         decimals = opts.decimals,
         contract = opts.contract,
-        owner = opts.owner;
+        owner = opts.owner,
+        spender = opts.spender,
+        allowance = opts.allowance;
 
     this.isLoading = !address || !symbol || !balance || !decimals;
     this.address = address || '0x0';
@@ -46,6 +48,8 @@ var Token = function () {
     this.balance = new BN(balance || '0', 16);
     this.decimals = decimals ? new BN(decimals) : undefined;
     this.owner = owner;
+    this.spender = spender;
+    this.allowance = allowance;
 
     this.contract = contract;
     this.update().catch(function (reason) {
@@ -63,7 +67,7 @@ var Token = function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _promise2.default.all([this.symbol || this.updateSymbol(), this.updateBalance(), this.decimals || this.updateDecimals()]);
+                return _promise2.default.all([this.symbol || this.updateSymbol(), this.updateBalance(), this.updateAllowance(), this.decimals || this.updateDecimals()]);
 
               case 2:
                 results = _context.sent;
@@ -90,8 +94,10 @@ var Token = function () {
     value: function serialize() {
       return {
         address: this.address,
+        spender: this.spender,
         symbol: this.symbol,
         balance: this.balance.toString(10),
+        allowance: this.allowance.toString(10),
         decimals: this.decimals ? parseInt(this.decimals.toString()) : 0,
         string: this.stringify()
       };
@@ -166,34 +172,24 @@ var Token = function () {
       return updateBalance;
     }()
   }, {
-    key: 'updateDecimals',
+    key: 'updateAllowance',
     value: function () {
       var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
-        var decimals;
+        var allowance;
         return _regenerator2.default.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                if (!(this.decimals !== undefined)) {
-                  _context4.next = 2;
-                  break;
-                }
-
-                return _context4.abrupt('return', this.decimals);
+                _context4.next = 2;
+                return this.updateValue('allowance');
 
               case 2:
-                _context4.next = 4;
-                return this.updateValue('decimals');
+                allowance = _context4.sent;
 
-              case 4:
-                decimals = _context4.sent;
+                this.allowance = allowance;
+                return _context4.abrupt('return', this.allowance);
 
-                if (decimals) {
-                  this.decimals = decimals;
-                }
-                return _context4.abrupt('return', this.decimals);
-
-              case 7:
+              case 5:
               case 'end':
                 return _context4.stop();
             }
@@ -201,8 +197,50 @@ var Token = function () {
         }, _callee4, this);
       }));
 
-      function updateDecimals() {
+      function updateAllowance() {
         return _ref4.apply(this, arguments);
+      }
+
+      return updateAllowance;
+    }()
+  }, {
+    key: 'updateDecimals',
+    value: function () {
+      var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5() {
+        var decimals;
+        return _regenerator2.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                if (!(this.decimals !== undefined)) {
+                  _context5.next = 2;
+                  break;
+                }
+
+                return _context5.abrupt('return', this.decimals);
+
+              case 2:
+                _context5.next = 4;
+                return this.updateValue('decimals');
+
+              case 4:
+                decimals = _context5.sent;
+
+                if (decimals) {
+                  this.decimals = decimals;
+                }
+                return _context5.abrupt('return', this.decimals);
+
+              case 7:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function updateDecimals() {
+        return _ref5.apply(this, arguments);
       }
 
       return updateDecimals;
@@ -210,75 +248,82 @@ var Token = function () {
   }, {
     key: 'updateValue',
     value: function () {
-      var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5(key) {
+      var _ref6 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6(key) {
         var methodName, args, result, _contract, val;
 
-        return _regenerator2.default.wrap(function _callee5$(_context5) {
+        return _regenerator2.default.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
                 methodName = void 0;
                 args = [];
-                _context5.t0 = key;
-                _context5.next = _context5.t0 === 'balance' ? 5 : 8;
+                _context6.t0 = key;
+                _context6.next = _context6.t0 === 'balance' ? 5 : _context6.t0 === 'allowance' ? 8 : 11;
                 break;
 
               case 5:
                 methodName = 'balanceOf';
                 args = [this.owner];
-                return _context5.abrupt('break', 9);
+                return _context6.abrupt('break', 12);
 
               case 8:
+                methodName = 'allowance';
+                args = [this.owner, this.spender];
+                return _context6.abrupt('break', 12);
+
+              case 11:
                 methodName = key;
 
-              case 9:
+              case 12:
                 result = void 0;
-                _context5.prev = 10;
-                _context5.next = 13;
+                _context6.prev = 13;
+
+                window.contract = this.contract;
+                _context6.next = 17;
                 return (_contract = this.contract)[methodName].apply(_contract, (0, _toConsumableArray3.default)(args));
 
-              case 13:
-                result = _context5.sent;
-                _context5.next = 21;
+              case 17:
+                result = _context6.sent;
+                _context6.next = 25;
                 break;
 
-              case 16:
-                _context5.prev = 16;
-                _context5.t1 = _context5['catch'](10);
+              case 20:
+                _context6.prev = 20;
+                _context6.t1 = _context6['catch'](13);
 
                 console.warn('failed to load ' + key + ' for token at ' + this.address);
 
-                if (!(key === 'balance')) {
-                  _context5.next = 21;
+                if (!(key === 'balance' || key === 'allowance')) {
+                  _context6.next = 25;
                   break;
                 }
 
-                throw _context5.t1;
+                throw _context6.t1;
 
-              case 21:
+              case 25:
                 if (!result) {
-                  _context5.next = 25;
+                  _context6.next = 29;
                   break;
                 }
 
                 val = result[0];
 
                 this[key] = val;
-                return _context5.abrupt('return', val);
+                return _context6.abrupt('return', val);
 
-              case 25:
-                return _context5.abrupt('return', this[key]);
+              case 29:
+                return _context6.abrupt('return', this[key]);
 
-              case 26:
+              case 30:
               case 'end':
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, this, [[10, 16]]);
+        }, _callee6, this, [[13, 20]]);
       }));
 
       function updateValue(_x2) {
-        return _ref5.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       }
 
       return updateValue;
