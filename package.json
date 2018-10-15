@@ -28,7 +28,8 @@
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
-    "human-standard-token-abi": "^1.0.2"
+    "human-standard-token-abi": "^1.0.2",
+    "safe-event-emitter": "^1.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
