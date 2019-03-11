@@ -24,7 +24,7 @@
   "homepage": "https://github.com/flyswatter/eth-token-tracker#readme",
   "dependencies": {
     "deep-equal": "^1.0.1",
-    "eth-block-tracker": "^1.0.7",
+    "eth-block-tracker": "^4.1.2",
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
