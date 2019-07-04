@@ -39,11 +39,11 @@ var EthContract = require('ethjs-contract');
 var Token = require('./token');
 var BlockTracker = require('eth-block-tracker');
 var abi = require('human-standard-token-abi');
-var EventEmitter = require('events').EventEmitter;
+var SafeEventEmitter = require('safe-event-emitter');
 var deepEqual = require('deep-equal');
 
-var TokenTracker = function (_EventEmitter) {
-  (0, _inherits3.default)(TokenTracker, _EventEmitter);
+var TokenTracker = function (_SafeEventEmitter) {
+  (0, _inherits3.default)(TokenTracker, _SafeEventEmitter);
 
   function TokenTracker() {
     var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -69,9 +69,10 @@ var TokenTracker = function (_EventEmitter) {
       return _this.createTokenFrom(tokenOpts);
     });
 
+    _this.updateBalances = _this.updateBalances.bind(_this);
+
     _this.running = true;
-    _this.blockTracker.on('latest', _this.updateBalances.bind(_this));
-    _this.blockTracker.start();
+    _this.blockTracker.on('latest', _this.updateBalances);
     return _this;
   }
 
@@ -85,34 +86,42 @@ var TokenTracker = function (_EventEmitter) {
   }, {
     key: 'updateBalances',
     value: function () {
-      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-        var _this2 = this;
-
-        var oldBalances;
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var oldBalances, newBalances;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 oldBalances = this.serialize();
-                return _context.abrupt('return', _promise2.default.all(this.tokens.map(function (token) {
+                _context.prev = 1;
+                _context.next = 4;
+                return _promise2.default.all(this.tokens.map(function (token) {
                   return token.updateBalance();
-                })).then(function () {
-                  var newBalances = _this2.serialize();
-                  if (!deepEqual(newBalances, oldBalances)) {
-                    if (_this2.running) {
-                      _this2.emit('update', newBalances);
-                    }
-                  }
-                }).catch(function (reason) {
-                  _this2.emit('error', reason);
                 }));
 
-              case 2:
+              case 4:
+                newBalances = this.serialize();
+
+                if (!deepEqual(newBalances, oldBalances)) {
+                  if (this.running) {
+                    this.emit('update', newBalances);
+                  }
+                }
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context['catch'](1);
+
+                this.emit('error', _context.t0);
+
+              case 11:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[1, 8]]);
       }));
 
       function updateBalances() {
@@ -143,10 +152,10 @@ var TokenTracker = function (_EventEmitter) {
     key: 'stop',
     value: function stop() {
       this.running = false;
-      this.blockTracker.stop();
+      this.blockTracker.removeListener('latest', this.updateBalances);
     }
   }]);
   return TokenTracker;
-}(EventEmitter);
+}(SafeEventEmitter);
 
 module.exports = TokenTracker;

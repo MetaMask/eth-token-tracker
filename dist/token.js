@@ -56,7 +56,7 @@ var Token = function () {
   (0, _createClass3.default)(Token, [{
     key: 'update',
     value: function () {
-      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+      var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
         var results;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
@@ -104,7 +104,7 @@ var Token = function () {
   }, {
     key: 'updateSymbol',
     value: function () {
-      var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+      var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
         var symbol;
         return _regenerator2.default.wrap(function _callee2$(_context2) {
           while (1) {
@@ -136,7 +136,7 @@ var Token = function () {
   }, {
     key: 'updateBalance',
     value: function () {
-      var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+      var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
         var balance;
         return _regenerator2.default.wrap(function _callee3$(_context3) {
           while (1) {
@@ -168,7 +168,7 @@ var Token = function () {
   }, {
     key: 'updateDecimals',
     value: function () {
-      var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
+      var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4() {
         var decimals;
         return _regenerator2.default.wrap(function _callee4$(_context4) {
           while (1) {
@@ -210,7 +210,7 @@ var Token = function () {
   }, {
     key: 'updateValue',
     value: function () {
-      var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5(key) {
+      var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(key) {
         var methodName, args, result, _contract, val;
 
         return _regenerator2.default.wrap(function _callee5$(_context5) {
