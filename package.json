@@ -24,7 +24,7 @@
   "homepage": "https://github.com/flyswatter/eth-token-tracker#readme",
   "dependencies": {
     "deep-equal": "^1.0.1",
-    "eth-block-tracker": "github:rekmarks/eth-block-tracker#node-10",
+    "eth-block-tracker": "^4.4.2",
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
@@ -39,6 +39,6 @@
     "ethereumjs-testrpc": "^3.0.4",
     "solc": "^0.4.10",
     "tape": "^4.6.3",
-    "web3-provider-engine": "github:rekmarks/web3-provider-engine#node-10"
+    "web3-provider-engine": "^15.0.1"
   }
 }
