@@ -1,0 +1,34 @@
+version: 2.1
+
+workflows:
+  test:
+    jobs:
+      - prep-deps
+      - test:
+          requires:
+            - prep-deps
+
+jobs:
+  prep-deps:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run:
+          name: Install deps
+          command: npm install
+      - persist_to_workspace:
+          root: .
+          paths:
+          - node_modules
+
+  test:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: npm test
