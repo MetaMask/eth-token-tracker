@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "babel --presets @babel/preset-env --plugins @babel/plugin-transform-runtime -d dist/ lib/",
-    "test": "node test",
+    "test": "tape test/**/*.js",
     "buildSample": "browserify example/index.js -o bundle.js"
   },
   "repository": {
