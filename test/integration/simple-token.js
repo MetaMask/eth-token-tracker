@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
+const assert = require('assert').strict
 const test = require('tape')
 const TestRPC = require('ethereumjs-testrpc')
-const provider = TestRPC.provider()
 const ProviderEngine = require('web3-provider-engine')
 const solc = require('solc')
 const TokenTracker = require('../../lib')
@@ -10,82 +10,78 @@ const BN = require('ethjs').BN
 
 const Eth = require('ethjs-query')
 const EthContract = require('ethjs-contract')
-const eth = new Eth(provider)
-const contract = new EthContract(eth)
 
 const source = fs.readFileSync(path.resolve(__dirname, '..', 'contracts/Token.sol')).toString();
 const compiled = solc.compile(source, 1)
 const SimpleTokenDeployer = compiled.contracts[':SimpleToken']
 
-let addresses = []
-let token, tokenAddress, tracked
-
-test('testrpc has addresses', function (t) {
-  eth.accounts()
-  .then((accounts) => {
-    addresses = accounts
-    t.ok(accounts, 'loaded accounts')
-    t.end()
-  })
-})
-
+let tracked
 const qty = '100000000000000000000' // 100 x 10 ^ 18
 const less = '10000000000000000000' // 100 x 10 ^ 17
-test('StandardToken publishing token & checking balance', function (t) {
-  const abi = JSON.parse(SimpleTokenDeployer.interface)
+
+async function setupSimpleTokenEnvironment () {
+  const provider = TestRPC.provider()
+  const eth = new Eth(provider)
+
+  const addresses = await eth.accounts()
+  assert(addresses.length > 0, 'test network should be initialized with accounts')
+
   const owner = addresses[0]
+  const contract = new EthContract(eth)
+  const abi = JSON.parse(SimpleTokenDeployer.interface)
   const StandardToken = contract(abi, SimpleTokenDeployer.bytecode, {
     from: owner,
     gas: '3000000',
     gasPrice: '30000',
   })
-  StandardToken.new(qty)
-  .then((txHash) => {
-    t.ok(txHash, 'publishes a txHash')
 
-    return new Promise((res, rej) => {
-      setTimeout(() => res(txHash), 300)
-    })
-  })
-  .then((txHash) => {
-    return eth.getTransactionReceipt(txHash)
-  })
-  .then((receipt) => {
-    const addr = receipt.contractAddress
-    t.ok(addr, 'should have an address')
-    tokenAddress = addr
-    token = StandardToken.at(addr)
-    return token.balanceOf(owner)
-  })
-  .then((res) => {
-    const balance = res[0]
-    t.equal(balance.toString(10), qty, 'owner should have all')
-    t.end()
-  })
-  .catch((reason) => {
-    t.notOk(reason, 'should not throw error')
-    t.end()
-  })
-})
+  const txHash = await StandardToken.new(qty)
+  assert.ok(txHash, 'should have published the token and returned a transaction hash')
+
+  await new Promise((resolve) => setTimeout(resolve, 300))
+  const receipt = await eth.getTransactionReceipt(txHash)
+
+  const tokenAddress = receipt.contractAddress
+  assert.ok(tokenAddress, 'should have a token address')
+
+  const token = StandardToken.at(tokenAddress)
+  const result = await token.balanceOf(owner)
+  const balance = result[0]
+  assert.equal(balance.toString(10), qty, 'owner should have all')
+
+  return { addresses, eth, provider, token, tokenAddress }
+}
 
 test('StandardToken balances are tracked', function (t) {
+  let addresses
+  let eth
+  let token
+  let tokenAddress
+  let tokenTracker
+  setupSimpleTokenEnvironment()
+  .then((environment) => {
+    addresses = environment.addresses
+    eth = environment.eth
+    token = environment.token
+    tokenAddress = environment.tokenAddress
+    const { provider } = environment
+    tokenTracker = new TokenTracker({
+      userAddress: addresses[0],
+      provider,
+      pollingInterval: 20,
+      tokens: [
+        {
+          symbol: 'MKR',
+          decimals: 18,
+          address: tokenAddress,
+        }
+      ],
+    })
+    tracked = tokenTracker.tokens[0]
 
-  var tokenTracker = new TokenTracker({
-    userAddress: addresses[0],
-    provider,
-    pollingInterval: 20,
-    tokens: [
-      {
-        symbol: 'MKR',
-        decimals: 18,
-        address: tokenAddress,
-      }
-    ],
+    return new Promise((res, rej) => { setTimeout(res, 200) })
   })
-  tracked = tokenTracker.tokens[0]
-
-  var a = new Promise((res, rej) => { setTimeout(res, 200) })
-  a.then(() => {
+  .then(() => {
     tracked = tokenTracker.serialize()[0]
     t.equal(tracked.balance.toString(10), qty, 'initial balance loaded')
     return token.transfer(addresses[1], less)
@@ -123,35 +119,42 @@ test('StandardToken balances are tracked', function (t) {
 })
 
 test('StandardToken balance changes are emitted and symbol fetched', function (t) {
+  let addresses
+  let token
+  setupSimpleTokenEnvironment()
+  .then((environment) => {
+    addresses = environment.addresses
+    token = environment.token
+    const { provider, tokenAddress } = environment
+    var tokenTracker = new TokenTracker({
+      userAddress: addresses[0],
+      provider,
+      pollingInterval: 20,
+      tokens: [
+        {
+          address: tokenAddress,
+        }
+      ],
+    })
+    tracked = tokenTracker.tokens[0]
 
-  var tokenTracker = new TokenTracker({
-    userAddress: addresses[0],
-    provider,
-    pollingInterval: 20,
-    tokens: [
-      {
-        address: tokenAddress,
+    let updateCounter = 0
+    tokenTracker.on('update', (data) => {
+      const tracked = data[0]
+
+      updateCounter++
+      if (updateCounter < 2) {
+        return t.ok(true, 'should be called once on initial load')
       }
-    ],
+
+      t.equal(tracked.symbol, 'TKN', 'symbol defaulted')
+      tokenTracker.stop()
+      t.end()
+    })
+
+    return new Promise((res, rej) => { setTimeout(res, 200) })
   })
-  tracked = tokenTracker.tokens[0]
-
-  let updateCounter = 0
-  tokenTracker.on('update', (data) => {
-    const tracked = data[0]
-
-    updateCounter++
-    if (updateCounter < 2) {
-      return t.ok(true, 'should be called once on initial load')
-    }
-
-    t.equal(tracked.symbol, 'TKN', 'symbol defaulted')
-    tokenTracker.stop()
-    t.end()
-  })
-
-  var a = new Promise((res, rej) => { setTimeout(res, 200) })
-  a.then(() => {
+  .then(() => {
     return token.transfer(addresses[1], '100')
   })
   .catch((reason) => {
@@ -162,35 +165,40 @@ test('StandardToken balance changes are emitted and symbol fetched', function (t
 })
 
 test('StandardToken non balance changes are not emitted', function (t) {
+  let addresses
+  let token
+  let tokenTracker
+  setupSimpleTokenEnvironment()
+  .then((environment) => {
+    addresses = environment.addresses
+    token = environment.token
+    const { provider, tokenAddress } = environment
+    tokenTracker = new TokenTracker({
+      userAddress: addresses[0],
+      provider,
+      pollingInterval: 20,
+      tokens: [
+        {
+          address: tokenAddress,
+        }
+      ],
+    })
 
-  var tokenTracker = new TokenTracker({
-    userAddress: addresses[0],
-    provider,
-    pollingInterval: 20,
-    tokens: [
-      {
-        address: tokenAddress,
+    let updateCounter = 0
+    tokenTracker.on('update', (data) => {
+      updateCounter++
+      if (updateCounter < 2) {
+        return t.ok(true, 'should be called for initial load')
       }
-    ],
+
+      t.notOk(true, 'a second event should not have fired')
+      tokenTracker.stop()
+      t.end()
+    })
+
+    return new Promise((res, rej) => { setTimeout(res, 200) })
   })
-  tracked = tokenTracker.tokens[0]
-
-  let updateCounter = 0
-  tokenTracker.on('update', (data) => {
-    const tracked = data[0]
-
-    updateCounter++
-    if (updateCounter < 2) {
-      return t.ok(true, 'should be called for initial load')
-    }
-
-    t.notOk(true, 'a second event should not have fired')
-    tokenTracker.stop()
-    t.end()
-  })
-
-  var a = new Promise((res, rej) => { setTimeout(res, 200) })
-  a.then(() => {
+  .then(() => {
     return token.transfer(addresses[1], '0')
   })
   .then(() => {
@@ -210,20 +218,22 @@ test('StandardToken non balance changes are not emitted', function (t) {
 })
 
 test('StandardToken able to add new tokens', function (t) {
+  setupSimpleTokenEnvironment()
+  .then(({ addresses, provider, tokenAddress }) => {
+    var tokenTracker = new TokenTracker({
+      userAddress: addresses[0],
+      provider,
+      pollingInterval: 20,
+      tokens: [],
+    })
 
-  var tokenTracker = new TokenTracker({
-    userAddress: addresses[0],
-    provider,
-    pollingInterval: 20,
-    tokens: [],
+    tokenTracker.on('update', (data) => {
+      const tracked = data[0]
+      t.equal(tracked.address, tokenAddress, 'token was added')
+      tokenTracker.stop()
+      t.end()
+    })
+
+    tokenTracker.add({ address: tokenAddress })
   })
-
-  tokenTracker.on('update', (data) => {
-    const tracked = data[0]
-    t.equal(tracked.address, tokenAddress, 'token was added')
-    tokenTracker.stop()
-    t.end()
-  })
-
-  tokenTracker.add({ address: tokenAddress })
 })
