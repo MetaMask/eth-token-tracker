@@ -1,10 +1,12 @@
+const fs = require('fs')
+const path = require('path')
 const test = require('tape')
 const TestRPC = require('ethereumjs-testrpc')
 const provider = TestRPC.provider()
 const ProviderEngine = require('web3-provider-engine')
-const fs = require('fs')
+
 const solc = require('solc')
-const TokenTracker = require('../lib')
+const TokenTracker = require('../../lib')
 const BN = require('ethjs').BN
 
 const Eth = require('ethjs-query')
@@ -12,7 +14,7 @@ const EthContract = require('ethjs-contract')
 const eth = new Eth(provider)
 const contract = new EthContract(eth)
 
-const source = fs.readFileSync(__dirname + '/contracts/Token.sol').toString();
+const source = fs.readFileSync(path.resolve(__dirname, '..', 'contracts/Token.sol')).toString();
 const compiled = solc.compile(source, 1)
 const HumanStandardDeployer = compiled.contracts[':HumanStandardToken']
 
