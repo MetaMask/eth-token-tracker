@@ -1,12 +1,13 @@
+const fs = require('fs')
+const path = require('path')
 const test = require('tape')
 const TestRPC = require('ethereumjs-testrpc')
 const provider = TestRPC.provider()
 const ProviderEngine = require('web3-provider-engine')
-const fs = require('fs')
 const solc = require('solc')
-const TokenTracker = require('../lib')
+const TokenTracker = require('../../lib')
 const BN = require('ethjs').BN
-const util = require('../lib/util')
+const util = require('../../lib/util')
 
 const Eth = require('ethjs-query')
 const EthContract = require('ethjs-contract')
@@ -14,7 +15,7 @@ const eth = new Eth(provider)
 const contract = new EthContract(eth)
 let count = 0
 
-const source = fs.readFileSync(__dirname + '/contracts/ZeppelinToken.sol').toString();
+const source = fs.readFileSync(path.resolve(__dirname, '..', 'contracts/ZeppelinToken.sol')).toString();
 const compiled = solc.compile(source, 1)
 
 const SimpleTokenDeployer = compiled.contracts[':TutorialToken']
