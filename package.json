@@ -4,6 +4,7 @@
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "dist/index.js",
   "scripts": {
+    "lint": "echo 'Skip'",
     "prepublishOnly": "npm run build",
     "build": "babel --presets @babel/preset-env --plugins @babel/plugin-transform-runtime -d dist/ lib/",
     "test": "tape test/**/*.js",
