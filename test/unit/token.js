@@ -4,6 +4,31 @@ const BN = require('ethjs').BN
 const Token = require('../../lib/token')
 const { setupSimpleTokenEnvironment } = require('../helper')
 
+
+test('token with no parameters', function (t) {
+  t.throws(() => (new Token()), 'should throw if missing contract parameter')
+  t.end()
+})
+
+test('token with empty options', function (t) {
+  t.throws(() => (new Token({})), 'should throw if missing contract parameter')
+  t.end()
+})
+
+test('token with just contract option', async function (t) {
+  t.plan(1)
+  const { token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(() => (new Token({ contract })), 'should throw if missing owner parameter')
+  t.end()
+})
+
+test('token with just owner option', async function (t) {
+  t.plan(1)
+  const { addresses } = await setupSimpleTokenEnvironment()
+  t.throws(() => (new Token({ owner: addresses[0] })), 'should throw if missing contract parameter')
+  t.end()
+})
+
 test('token with minimal options', async function (t) {
   t.plan(1)
   const { addresses, token: contract } = await setupSimpleTokenEnvironment()
@@ -110,6 +135,38 @@ test('token with array balance', async function (t) {
   t.end()
 })
 
+test('token with prefixed hex string balance', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(
+    () => {
+      new Token({
+        balance: '0x10',
+        contract,
+        owner: addresses[0],
+      })
+    },
+    'should throw if given prefixed hex string balance',
+  )
+  t.end()
+})
+
+test('token with invalid string balance', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(
+    () => {
+      new Token({
+        balance: 'z',
+        contract,
+        owner: addresses[0],
+      })
+    },
+    'should throw if given invalid string balance',
+  )
+  t.end()
+})
+
 test('token with zero balance', async function (t) {
   t.plan(1)
   const { addresses, token: contract } = await setupSimpleTokenEnvironment()
@@ -163,6 +220,38 @@ test('token with string decimals', async function (t) {
 
   const serializedToken = token.serialize()
   t.deepEqual(serializedToken.decimals, 10, 'should serialize token decimals correctly')
+  t.end()
+})
+
+test('token with prefixed hex string decimals', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(
+    () => {
+      new Token({
+        decimals: '0x10',
+        contract,
+        owner: addresses[0],
+      })
+    },
+    'should throw if given prefixed hex string decimals',
+  )
+  t.end()
+})
+
+test('token with invalid string decimals', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(
+    () => {
+      new Token({
+        decimals: 'z',
+        contract,
+        owner: addresses[0],
+      })
+    },
+    'should throw if given invalid string decimals',
+  )
   t.end()
 })
 
