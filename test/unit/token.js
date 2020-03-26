@@ -97,6 +97,20 @@ test('token with unprefixed hex string balance', async function (t) {
   t.plan(1)
   const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
+    balance: 'f',
+    contract,
+    owner: addresses[0],
+  })
+
+  const serializedToken = token.serialize()
+  t.deepEqual(serializedToken.balance, '15', 'should serialize token balance correctly')
+  t.end()
+})
+
+test('token with decimal string balance', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  const token = new Token({
     balance: '10',
     contract,
     owner: addresses[0],
@@ -220,6 +234,22 @@ test('token with string decimals', async function (t) {
 
   const serializedToken = token.serialize()
   t.deepEqual(serializedToken.decimals, 10, 'should serialize token decimals correctly')
+  t.end()
+})
+
+test('token with unprefixed hex string decimals', async function (t) {
+  t.plan(1)
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
+  t.throws(
+    () => {
+      new Token({
+        decimals: 'f',
+        contract,
+        owner: addresses[0],
+      })
+    },
+    'should throw if given unprefixed hex string decimals',
+  )
   t.end()
 })
 
