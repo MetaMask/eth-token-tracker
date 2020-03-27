@@ -303,6 +303,54 @@ test('tracker with minimal token and one block update with changes', async funct
   }
 })
 
+test('tracker with minimal token and one immediate block update with changes', async function (t) {
+  t.plan(1)
+  let tracker
+  try {
+    const { addresses, provider, token, tokenAddress } = await setupSimpleTokenEnvironment()
+    tracker = new TokenTracker({
+      pollingInterval: 20,
+      provider,
+      tokens: [
+        {
+          address: tokenAddress,
+        }
+      ],
+      userAddress: addresses[1],
+    })
+
+    const updates = []
+    tracker.on('update', (tokens) => {
+      updates.push(tokens)
+    })
+    await token.transfer(addresses[1], '110')
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+
+    t.deepEqual(
+      updates,
+      [
+        [{
+          address: tokenAddress,
+          symbol: 'TKN',
+          balance: '0',
+          decimals: 0,
+          string: '0',
+        }],
+        [{
+          address: tokenAddress,
+          symbol: 'TKN',
+          balance: '110',
+          decimals: 0,
+          string: '110',
+        }],
+      ],
+      'should have expected state for both updates'
+    )
+    t.end()
+  } finally {
+    tracker.stop()
+  }
+})
 
 test('tracker with broken provider', async function (t) {
   t.plan(1)
