@@ -59,6 +59,51 @@ test('tracker with minimal token', async function (t) {
   }
 })
 
+test('tracker with token including metadata', async function (t) {
+  t.plan(2)
+  let tracker
+  try {
+    const { addresses, provider, tokenAddress } = await setupSimpleTokenEnvironment()
+    tracker = new TokenTracker({
+      pollingInterval: 20,
+      provider,
+      tokens: [
+        {
+          address: tokenAddress,
+          symbol: 'TKN',
+          decimals: 0,
+        }
+      ],
+      userAddress: addresses[1],
+    })
+
+    const updates = []
+    tracker.on('update', (tokens) => {
+      updates.push(tokens)
+    })
+
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+
+    t.equal(updates.length, 1, 'should have one update')
+    t.deepEqual(
+      updates,
+      [
+        [{
+          address: tokenAddress,
+          symbol: 'TKN',
+          balance: '0',
+          decimals: 0,
+          string: '0',
+        }],
+      ],
+      'should have expected initial state'
+    )
+    t.end()
+  } finally {
+    tracker.stop()
+  }
+})
+
 test('tracker with minimal token and one block update with no changes', async function (t) {
   t.plan(2)
   let tracker
