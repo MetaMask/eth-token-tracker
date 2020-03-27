@@ -25,6 +25,46 @@ test('tracker with minimal options', async function (t) {
   }
 })
 
+test('tracker with token added after initialization', async function (t) {
+  t.plan(2)
+  let tracker
+  try {
+    const { addresses, provider, tokenAddress } = await setupSimpleTokenEnvironment()
+    tracker = new TokenTracker({
+      pollingInterval: 20,
+      provider,
+      userAddress: addresses[1],
+    })
+
+    const updates = []
+    tracker.on('update', (tokens) => {
+      updates.push(tokens)
+    })
+
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+    tracker.add({ address: tokenAddress })
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+
+    t.equal(updates.length, 1, 'should have one update')
+    t.deepEqual(
+      updates,
+      [
+        [{
+          address: tokenAddress,
+          symbol: 'TKN',
+          balance: '0',
+          decimals: 0,
+          string: '0',
+        }],
+      ],
+      'should have expected initial state'
+    )
+    t.end()
+  } finally {
+    tracker.stop()
+  }
+})
+
 test('tracker with minimal token', async function (t) {
   t.plan(2)
   let tracker
