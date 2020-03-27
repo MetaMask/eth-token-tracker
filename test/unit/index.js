@@ -253,3 +253,28 @@ test('tracker with minimal token and one block update with changes', async funct
     tracker.stop()
   }
 })
+
+
+test('tracker with broken provider', async function (t) {
+  t.plan(1)
+  let tracker
+  try {
+    tracker = new TokenTracker({
+      provider: {
+        sendAsync: () => {
+          throw new Error('Fake provider error')
+        }
+      },
+      tokens: [{
+        address: '0xf83c3761a5c0042ab9a694d29520aa9cd6788987',
+      }],
+    })
+    tracker.on('error', () => {
+      t.pass('should emit error event upon')
+    })
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+    t.end()
+  } finally {
+    tracker.stop()
+  }
+})
