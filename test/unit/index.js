@@ -4,11 +4,20 @@ const TokenTracker = require('../../lib/')
 const { setupSimpleTokenEnvironment } = require('../helper')
 
 test('tracker with minimal options', async function (t) {
-  t.plan(1)
+  t.plan(2)
   let tracker
   try {
     const { provider } = await setupSimpleTokenEnvironment()
     tracker = new TokenTracker({ provider })
+
+    const updates = []
+    tracker.on('update', (tokens) => {
+      updates.push(tokens)
+    })
+
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+
+    t.equal(updates.length, 0, 'should have zero updates')
     t.deepEqual(tracker.serialize(), [], 'should serialize as an empty array')
     t.end()
   } finally {
