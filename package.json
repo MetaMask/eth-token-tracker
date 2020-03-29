@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/flyswatter/eth-token-tracker.git"
+    "url": "git+ssh://git@github.com/MetaMask/eth-token-tracker.git"
   },
   "keywords": [
     "ethereum",
@@ -21,9 +21,9 @@
   "author": "Dan Finlay <dan@danfinlay.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/flyswatter/eth-token-tracker/issues"
+    "url": "https://github.com/MetaMask/eth-token-tracker/issues"
   },
-  "homepage": "https://github.com/flyswatter/eth-token-tracker#readme",
+  "homepage": "https://github.com/MetaMask/eth-token-tracker#readme",
   "dependencies": {
     "deep-equal": "^1.1.0",
     "eth-block-tracker": "^4.4.2",
