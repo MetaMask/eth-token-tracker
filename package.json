@@ -1,5 +1,5 @@
 {
-  "name": "eth-token-tracker",
+  "name": "@metamask/eth-token-tracker",
   "version": "1.1.11",
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "dist/index.js",
@@ -13,6 +13,10 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/MetaMask/eth-token-tracker.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "keywords": [
     "ethereum",
