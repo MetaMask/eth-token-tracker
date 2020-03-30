@@ -367,7 +367,7 @@ test('tracker with broken provider', async function (t) {
       }],
     })
     tracker.on('error', () => {
-      t.pass('should emit error event upon')
+      t.pass('should emit error event')
     })
     await new Promise((resolve) => setTimeout(() => resolve(), 200))
     t.end()
