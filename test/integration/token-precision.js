@@ -37,7 +37,7 @@ generateTestWithParams({
   precision: 2,
   result: function (token, t) {
     t.equal(tracked.decimals, 2, 'initial decimals retained')
-    t.equal(tracked.string, '100.00', 'represents decimals')
+    t.equal(tracked.string, '100', 'represents decimals')
     t.end()
   },
 })
@@ -57,7 +57,7 @@ generateTestWithParams({
   precision: 18,
   result: function (token, t) {
     t.equal(tracked.decimals, 18, 'initial decimals retained')
-    t.equal(tracked.string, '0.000', 'represents decimals')
+    t.equal(tracked.string, '0.00000000000000012', 'represents decimals')
     t.end()
   },
 })
@@ -68,7 +68,7 @@ generateTestWithParams({
   precision: 18,
   result: function (token, t) {
     t.equal(tracked.decimals, 18, 'initial decimals retained')
-    t.equal(tracked.string, '0.000', 'represents decimals')
+    t.equal(tracked.string, '0.000002179663820576', 'represents decimals')
     t.end()
   },
 })
@@ -79,7 +79,7 @@ generateTestWithParams({
   precision: 18,
   result: function (token, t) {
     t.equal(tracked.decimals, 18, 'initial decimals retained')
-    t.equal(tracked.string, '0.000', 'represents decimals')
+    t.equal(tracked.string, '0.00000000000027929', 'represents decimals')
     t.end()
   },
 })
@@ -88,7 +88,7 @@ test('Precision rendering test for issue 2162', function (t) {
   const quantity = new BN('279290')
   const precision = new BN('18')
   const string = util.stringifyBalance(quantity, precision)
-  t.equal(string, '0.000', 'represents decimals')
+  t.equal(string, '0.00000000000027929', 'represents decimals')
   t.end()
 })
 
