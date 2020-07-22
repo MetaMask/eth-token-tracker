@@ -63,7 +63,7 @@ test('StandardToken balances are tracked', function (t) {
     t.equal(tracked.address, tokenAddress, 'token address set')
     t.equal(tracked.balance.toString(10), should, 'tokens sent')
 
-    t.ok(tracked.string.indexOf('90.0') === 0, 'represents decimals')
+    t.ok(tracked.string.indexOf('90') === 0, 'represents decimals')
 
     tokenTracker.stop()
     t.end()
