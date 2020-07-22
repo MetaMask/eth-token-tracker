@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-07-22
+### Changed
+- **BREAKING**: Change the output format of string property to include significant digits (#44)
+
+### Security
+- Update 'lodash' to address security advisory (#43)
+
 ## [2.0.0] - 2020-03-30
 ### Changed
 - **BREAKING**: Validate token parameters (#30)
