@@ -42,3 +42,13 @@ test('token balance stringify 4', function (t) {
   t.equal(result, '0.012', 'Creates correct balance.')
   t.end()
 })
+
+test('token balance stringify 5', function (t) {
+  const balance = new BN('1200', 10)
+  const decimals = new BN(4)
+
+  const result = util.stringifyBalance(balance, decimals)
+
+  t.equal(result, '0.12', 'Creates correct balance.')
+  t.end()
+})
