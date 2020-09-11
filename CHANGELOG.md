@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2020-09-11
+
+### Fixed
+- Ensure balances >= 0.1 and < 1 start with a zero (#47)
+
 ## [3.0.0] - 2020-07-22
 ### Changed
 - **BREAKING**: Change the output format of string property to include significant digits (#44)
