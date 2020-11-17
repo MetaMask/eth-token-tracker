@@ -55,6 +55,7 @@ test('tracker with token added after initialization', async function (t) {
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
       ],
       'should have expected initial state'
@@ -98,6 +99,7 @@ test('tracker with minimal token', async function (t) {
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
       ],
       'should have expected initial state'
@@ -143,6 +145,7 @@ test('tracker with token including metadata', async function (t) {
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
       ],
       'should have expected initial state'
@@ -188,6 +191,7 @@ test('tracker with minimal token and one block update with no changes', async fu
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
       ],
       'should have expected initial state'
@@ -236,6 +240,7 @@ test('tracker with minimal token and two rapid block updates, the first with cha
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
         [{
           address: tokenAddress,
@@ -243,6 +248,7 @@ test('tracker with minimal token and two rapid block updates, the first with cha
           balance: '110',
           decimals: 0,
           string: '110',
+          balanceError: null,
         }],
       ],
       'should have expected state for both updates'
@@ -286,6 +292,7 @@ test('tracker with minimal token and one block update with changes', async funct
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
         [{
           address: tokenAddress,
@@ -293,6 +300,7 @@ test('tracker with minimal token and one block update with changes', async funct
           balance: '110',
           decimals: 0,
           string: '110',
+          balanceError: null,
         }],
       ],
       'should have expected state for both updates'
@@ -335,6 +343,7 @@ test('tracker with minimal token and one immediate block update with changes', a
           balance: '0',
           decimals: 0,
           string: '0',
+          balanceError: null,
         }],
         [{
           address: tokenAddress,
@@ -342,6 +351,7 @@ test('tracker with minimal token and one immediate block update with changes', a
           balance: '110',
           decimals: 0,
           string: '110',
+          balanceError: null,
         }],
       ],
       'should have expected state for both updates'
@@ -368,6 +378,31 @@ test('tracker with broken provider', async function (t) {
     })
     tracker.on('error', () => {
       t.pass('should emit error event')
+    })
+    await new Promise((resolve) => setTimeout(() => resolve(), 200))
+    t.end()
+  } finally {
+    tracker.stop()
+  }
+})
+
+test('tracker with broken provider and includeFailedTokens', async function (t) {
+  t.plan(1)
+  let tracker
+  try {
+    tracker = new TokenTracker({
+      provider: {
+        sendAsync: () => {
+          throw new Error('Fake provider error')
+        }
+      },
+      includeFailedTokens: true,
+      tokens: [{
+        address: '0xf83c3761a5c0042ab9a694d29520aa9cd6788987',
+      }],
+    })
+    tracker.on('update', () => {
+      t.pass('should emit update event')
     })
     await new Promise((resolve) => setTimeout(() => resolve(), 200))
     t.end()

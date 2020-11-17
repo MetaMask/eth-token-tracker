@@ -44,7 +44,8 @@ test('token with minimal options', async function (t) {
       symbol: undefined,
       balance: '0',
       decimals: 0,
-      string: '0'
+      string: '0',
+      balanceError: null,
     },
     'should serialize minimal token correctly',
   )
