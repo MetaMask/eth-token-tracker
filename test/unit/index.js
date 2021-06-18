@@ -56,6 +56,7 @@ test('tracker with token added after initialization', async function (t) {
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected initial state'
@@ -100,6 +101,7 @@ test('tracker with minimal token', async function (t) {
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected initial state'
@@ -146,6 +148,7 @@ test('tracker with token including metadata', async function (t) {
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected initial state'
@@ -192,6 +195,7 @@ test('tracker with minimal token and one block update with no changes', async fu
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected initial state'
@@ -241,6 +245,7 @@ test('tracker with minimal token and two rapid block updates, the first with cha
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
         [{
           address: tokenAddress,
@@ -249,6 +254,7 @@ test('tracker with minimal token and two rapid block updates, the first with cha
           decimals: 0,
           string: '110',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected state for both updates'
@@ -293,6 +299,7 @@ test('tracker with minimal token and one block update with changes', async funct
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
         [{
           address: tokenAddress,
@@ -301,6 +308,7 @@ test('tracker with minimal token and one block update with changes', async funct
           decimals: 0,
           string: '110',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected state for both updates'
@@ -344,6 +352,7 @@ test('tracker with minimal token and one immediate block update with changes', a
           decimals: 0,
           string: '0',
           balanceError: null,
+          isERC721: undefined,
         }],
         [{
           address: tokenAddress,
@@ -352,6 +361,7 @@ test('tracker with minimal token and one immediate block update with changes', a
           decimals: 0,
           string: '110',
           balanceError: null,
+          isERC721: undefined,
         }],
       ],
       'should have expected state for both updates'

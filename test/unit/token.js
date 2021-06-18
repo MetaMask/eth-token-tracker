@@ -46,6 +46,7 @@ test('token with minimal options', async function (t) {
       decimals: 0,
       string: '0',
       balanceError: null,
+      isERC721: undefined,
     },
     'should serialize minimal token correctly',
   )
