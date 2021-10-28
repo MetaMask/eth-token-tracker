@@ -9,7 +9,7 @@ test('token balance stringify 1', function (t) {
 
   const result = util.stringifyBalance(balance, decimals)
 
-  t.equal(result, '1.269', 'Creates correct balance.')
+  t.equal(result, '1.26973', 'Creates correct balance.')
   t.end()
 })
 
