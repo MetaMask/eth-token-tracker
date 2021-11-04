@@ -13,6 +13,18 @@ test('token balance stringify 1', function (t) {
   t.end()
 })
 
+test('token balance stringify 1 to 5 decimals when there is formatting decimals', function (t) {
+  const hex = '000000000000000000000000000000000000000000000000119f00ef7cc00ee4'
+  const balance = new BN(hex, 16)
+  const decimals = new BN(18)
+  const formattingDecimals = 5;
+
+  const result = util.stringifyBalance(balance, decimals, formattingDecimals)
+
+  t.equal(result, '1.26973', 'Creates correct balance.')
+  t.end()
+})
+
 test('token balance stringify 2', function (t) {
   const balance = new BN(15)
   const decimals = new BN(0)
