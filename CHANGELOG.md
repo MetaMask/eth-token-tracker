@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.2.0] - 2021-11-18
 - Support configuration of the number of decimals in the balance returned by `stringify`, via a new `balanceDecimals`
 property on the config object passed to the Token constructor (#71)
+- Properly clear error state after retrieving a balance successfully (#73)
 
 ## [3.1.0] - 2020-11-17
 - Add ability to include tokens with balance errors in update events, behind an option flag (#53)
