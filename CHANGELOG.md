@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [4.0.0] - 2021-11-18
+## [4.0.0] - 2022-01-05
 - Sets the minimum Node.js version to v12 (#58)
 - Support configuration of the number of decimals in the balance returned by `stringify`, via a new `balanceDecimals`
 property on the config object passed to the Token constructor (#71)
