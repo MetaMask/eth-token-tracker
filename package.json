@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "echo 'Skip'",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "yarn run build",
     "build": "babel --presets @babel/preset-env --plugins @babel/plugin-transform-runtime -d dist/ lib/",
     "test": "tape test/**/*.js",
     "buildSample": "browserify example/index.js -o bundle.js"
