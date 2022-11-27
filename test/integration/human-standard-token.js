@@ -140,7 +140,7 @@ test('HumanStandardToken balance changes are emitted', function (t) {
     const tracked = data[0]
 
     updateCounter++
-    if (updateCounter < 2) {
+    if (updateCounter < 3) {
       return t.equal(tracked.string, '8.9', 'initial balance loaded from last test')
     }
 
@@ -181,7 +181,7 @@ test('HumanStandardToken non balance changes are not emitted', function (t) {
     const tracked = data[0]
 
     updateCounter++
-    if (updateCounter < 2) {
+    if (updateCounter < 3) {
       return t.equal(tracked.string, '7.9', 'initial balance loaded from last test')
     }
 
