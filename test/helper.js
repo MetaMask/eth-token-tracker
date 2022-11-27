@@ -24,7 +24,7 @@ async function setupSimpleTokenEnvironment ({ qty = defaultQuantity } = {}) {
   const StandardToken = contract(abi, SimpleTokenDeployer.bytecode, {
     from: owner,
     gas: '3000000',
-    gasPrice: '30000',
+    gasPrice: '875000000',
   })
 
   const txHash = await StandardToken.new(qty)

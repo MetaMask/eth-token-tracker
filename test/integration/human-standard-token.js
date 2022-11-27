@@ -38,7 +38,7 @@ test('HumanStandardToken publishing token & checking balance', function (t) {
   const HumanStandardToken = contract(abi, HumanStandardDeployer.bytecode, {
     from: addresses[0],
     gas: '3000000',
-    gasPrice: '30000',
+    gasPrice: '875000000',
   })
   const humanStandardToken = HumanStandardToken.new('1000',
                                                     'DanBucks',
