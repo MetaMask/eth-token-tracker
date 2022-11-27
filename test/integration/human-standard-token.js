@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const test = require('tape')
-const TestRPC = require('ethereumjs-testrpc')
-const provider = TestRPC.provider()
+const ganache = require('ganache')
+const provider = ganache.provider()
 const ProviderEngine = require('web3-provider-engine')
 
 const solc = require('solc')
