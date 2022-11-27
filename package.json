@@ -50,7 +50,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "ganache": "^7.5.0",
-    "solc": "^0.4.10",
+    "solc": "0.4.26",
     "tape": "^4.6.3",
     "web3-provider-engine": "^15.0.1"
   }
