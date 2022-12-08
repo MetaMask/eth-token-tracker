@@ -23,6 +23,7 @@ jobs:
     needs:
       - prepare
     strategy:
+      fail-fast: false
       matrix:
         node-version: [12.x, 14.x]
     steps:
@@ -48,6 +49,7 @@ jobs:
     needs:
       - prepare
     strategy:
+      fail-fast: false
       matrix:
         node-version: [12.x, 14.x]
     steps:
@@ -73,6 +75,7 @@ jobs:
     needs:
       - prepare
     strategy:
+      fail-fast: false
       matrix:
         node-version: [12.x, 14.x]
     steps:
