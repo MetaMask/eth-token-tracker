@@ -36,13 +36,13 @@
     "/lib"
   ],
   "dependencies": {
+    "@metamask/safe-event-emitter": "^2.0.0",
     "deep-equal": "^1.1.0",
     "eth-block-tracker": "^5.0.1",
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
-    "human-standard-token-abi": "^1.0.2",
-    "safe-event-emitter": "^1.0.1"
+    "human-standard-token-abi": "^1.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
