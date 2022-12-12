@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "deep-equal": "^1.1.0",
-    "eth-block-tracker": "^4.4.2",
+    "eth-block-tracker": "^5.0.1",
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
@@ -49,7 +49,7 @@
     "@babel/core": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "ethereumjs-testrpc": "^3.0.4",
+    "ganache-cli": "^6.12.2",
     "solc": "^0.4.26",
     "tape": "^4.6.3",
     "web3-provider-engine": "^15.0.1"
