@@ -3,7 +3,6 @@ const path = require('path')
 const test = require('tape')
 const ganache = require('ganache-cli')
 const provider = ganache.provider()
-const ProviderEngine = require('web3-provider-engine')
 const solc = require('solc')
 const TokenTracker = require('../../lib')
 const BN = require('ethjs').BN
