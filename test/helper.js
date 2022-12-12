@@ -1,7 +1,7 @@
 const assert = require('assert').strict
 const fs = require('fs')
 const path = require('path')
-const TestRPC = require('ethereumjs-testrpc')
+const ganache = require('ganache-cli')
 const Eth = require('ethjs-query')
 const EthContract = require('ethjs-contract')
 const solc = require('solc')
@@ -12,7 +12,7 @@ const SimpleTokenDeployer = compiled.contracts[':SimpleToken']
 
 const defaultQuantity = '100000000000000000000' // 100 x 10 ^ 18
 async function setupSimpleTokenEnvironment ({ qty = defaultQuantity } = {}) {
-  const provider = TestRPC.provider()
+  const provider = ganache.provider()
   const eth = new Eth(provider)
 
   const addresses = await eth.accounts()
