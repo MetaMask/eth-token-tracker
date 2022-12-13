@@ -1,5 +1,4 @@
 const test = require('tape')
-const ProviderEngine = require('web3-provider-engine')
 
 const BN = require('ethjs').BN
 
