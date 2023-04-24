@@ -35,10 +35,6 @@
     "/dist",
     "/lib"
   ],
-  "resolutions": {
-    "bn.js": "4.12.0",
-    "ethjs-abi": "0.2.1"
-  },
   "dependencies": {
     "@metamask/safe-event-emitter": "^2.0.0",
     "deep-equal": "^2.2.0",
