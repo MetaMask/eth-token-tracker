@@ -39,9 +39,9 @@
     "@metamask/safe-event-emitter": "^2.0.0",
     "deep-equal": "^2.2.0",
     "eth-block-tracker": "^5.0.1",
-    "ethjs": "^0.3.6",
-    "ethjs-contract": "^0.2.1",
-    "ethjs-query": "^0.3.7",
+    "ethjs": "^0.4.0",
+    "ethjs-contract": "^0.2.3",
+    "ethjs-query": "^0.3.8",
     "human-standard-token-abi": "^2.0.0"
   },
   "devDependencies": {
