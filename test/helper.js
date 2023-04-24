@@ -1,7 +1,7 @@
 const assert = require('assert').strict
 const fs = require('fs')
 const path = require('path')
-const ganache = require('ganache-cli')
+const ganache = require('ganache')
 const Eth = require('ethjs-query')
 const EthContract = require('ethjs-contract')
 const solc = require('solc')
@@ -24,7 +24,7 @@ async function setupSimpleTokenEnvironment ({ qty = defaultQuantity } = {}) {
   const StandardToken = contract(abi, SimpleTokenDeployer.bytecode, {
     from: owner,
     gas: '3000000',
-    gasPrice: '30000',
+    gasPrice: '875000000',
   })
 
   const txHash = await StandardToken.new(qty)

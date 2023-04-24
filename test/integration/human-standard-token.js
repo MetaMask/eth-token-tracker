@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const test = require('tape')
-const ganache = require('ganache-cli')
+const ganache = require('ganache')
 const provider = ganache.provider()
 
 const solc = require('solc')
@@ -37,7 +37,7 @@ test('HumanStandardToken publishing token & checking balance', function (t) {
   const HumanStandardToken = contract(abi, HumanStandardDeployer.bytecode, {
     from: addresses[0],
     gas: '3000000',
-    gasPrice: '30000',
+    gasPrice: '875000000',
   })
   const humanStandardToken = HumanStandardToken.new('1000',
                                                     'DanBucks',
@@ -139,7 +139,7 @@ test('HumanStandardToken balance changes are emitted', function (t) {
     const tracked = data[0]
 
     updateCounter++
-    if (updateCounter < 2) {
+    if (updateCounter < 3) {
       return t.equal(tracked.string, '8.9', 'initial balance loaded from last test')
     }
 
@@ -175,35 +175,41 @@ test('HumanStandardToken non balance changes are not emitted', function (t) {
   tracked = tokenTracker.tokens[0]
 
   let updateCounter = 0
+    , ended = false
   tokenTracker.on('update', (data) => {
     const tracked = data[0]
 
     updateCounter++
-    if (updateCounter < 2) {
+    if (updateCounter < 3) {
       return t.equal(tracked.string, '7.9', 'initial balance loaded from last test')
     }
 
     t.notOk(true, 'a second event should not have fired')
-    tokenTracker.stop()
-    t.end()
+    if (!ended) {
+      tokenTracker.stop()
+      t.end()
+      ended = true
+    }
   })
 
-  var a = new Promise((res, rej) => { setTimeout(res, 200) })
-  a.then(() => {
-    return token.transfer(addresses[1], '0')
-  })
-  .then(() => {
-    var a = new Promise((res, rej) => { setTimeout(res, 200) })
-    return a
-  })
+  ;(new Promise((res) => { setTimeout(res, 200) }))
+  .then(() =>
+    token.transfer(addresses[1], '0')
+  )
+  .then(
+    new Promise((res) => { setTimeout(res, 200) })
+  )
   .then(() => {
     t.ok(true, 'time passed, no new events were fired.')
-    tokenTracker.stop()
-    t.end()
   })
   .catch((reason) => {
     t.notOk(reason, 'should not throw an error')
-    tokenTracker.stop()
-    t.end()
+  })
+  .finally(() => {
+    if (!ended) {
+      tokenTracker.stop()
+      t.end()
+      ended = true
+    }
   })
 })

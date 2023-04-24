@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const test = require('tape')
-const ganache = require('ganache-cli')
+const ganache = require('ganache')
 const provider = ganache.provider()
 const solc = require('solc')
 const TokenTracker = require('../../lib')
@@ -102,7 +102,7 @@ function generateTestWithParams(opts = {}) {
     const StandardToken = contract(abi, SimpleTokenDeployer.bytecode, {
       from: owner,
       gas: '3000000',
-      gasPrice: '30000',
+      gasPrice: '875000000',
     })
     StandardToken.new(qty, precision)
     .then((txHash) => {
