@@ -1,6 +1,6 @@
 {
   "name": "@metamask/eth-token-tracker",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "dist/index.js",
   "engines": {
@@ -42,7 +42,7 @@
     "ethjs": "^0.3.6",
     "ethjs-contract": "^0.2.1",
     "ethjs-query": "^0.3.7",
-    "human-standard-token-abi": "^1.0.2"
+    "human-standard-token-abi": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
