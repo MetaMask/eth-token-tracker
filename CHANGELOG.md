@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0] - 2023-04-24
+- Update dependencies
+  - deep-equal@1.1.0->2.2.0
+  - ethjs@0.3.6->0.4.0
+  - ethjs-contract@0.2.1->0.2.3
+  - ethjs-query@0.3.7->0.3.8
+
 ## [4.0.1] - 2023-04-24
 - Fix Node.js v14+ compatibility (#86)
 - Update dependencies
