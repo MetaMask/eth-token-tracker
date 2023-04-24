@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.1] - 2023-04-24
+- Fix Node.js v14+ compatibility (#86)
+- Update dependencies
+  - eth-block-tracker@4.4.2->5.0.1
+  - @metamask/safe-event-emitter@1.0.1->2.0.0
+  - Remove unused web3-provider-engine
+  - Various security and maintenance bumps (#85,#84,#75,#77,#80,#83,#89,#91)
+
 ## [4.0.0] - 2022-01-10
 - Set the minimum Node.js version to v12 (#58)
 - Support configuration of the number of decimals in the balance returned by `stringify`, via a new `balanceDecimals`
