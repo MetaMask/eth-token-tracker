@@ -38,7 +38,7 @@
   "dependencies": {
     "@metamask/safe-event-emitter": "^2.0.0",
     "deep-equal": "^2.2.0",
-    "eth-block-tracker": "^6.1.0",
+    "eth-block-tracker": "^7.1.0",
     "ethjs": "^0.4.0",
     "ethjs-contract": "^0.2.3",
     "ethjs-query": "^0.3.8",
