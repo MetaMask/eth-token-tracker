@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2023-07-20
+- **BREAKING**: Set the minimum Node.js version to v14 (#104)
+- Update dependency eth-block-tracker@^5.0.1->^6.1.0 (#104)
+
 ## [4.1.0] - 2023-04-24
 - Update dependencies
   - deep-equal@1.1.0->2.2.0
