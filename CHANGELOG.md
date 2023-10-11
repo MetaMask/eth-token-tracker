@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.1] - 2023-10-11
+- Update dependency safe-event-emitter@^2.0.0->^3.0.0 (#108)
+
 ## [6.0.0] - 2023-08-04
 - **BREAKING**: Set the minimum Node.js version to v16 (#105)
 - Update dependency eth-block-tracker@^6.1.0->^7.1.0 (#105)
