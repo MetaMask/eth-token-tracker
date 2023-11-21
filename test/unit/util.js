@@ -1,5 +1,5 @@
 const test = require('tape')
-const BN = require('ethjs').BN
+const BN = require('bn.js')
 const util = require('../../lib/util')
 
 test('token balance stringify 1', function (t) {

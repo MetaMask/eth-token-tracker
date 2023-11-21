@@ -2,8 +2,8 @@ const assert = require('assert').strict
 const fs = require('fs')
 const path = require('path')
 const ganache = require('ganache')
-const Eth = require('ethjs-query')
-const EthContract = require('ethjs-contract')
+const Eth = require('@metamask/ethjs-query')
+const EthContract = require('@metamask/ethjs-contract')
 const solc = require('solc')
 
 const source = fs.readFileSync(path.resolve(__dirname, 'contracts/Token.sol')).toString();

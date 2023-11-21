@@ -1,6 +1,6 @@
 const test = require('tape')
 
-const BN = require('ethjs').BN
+const BN = require('bn.js')
 
 const TokenTracker = require('../../lib')
 const { setupSimpleTokenEnvironment } = require('../helper')
