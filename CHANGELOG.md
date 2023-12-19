@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [7.0.1] - 2023-12-01
+## [7.0.1] - 2023-12-20
 - Update `ethjs` packages to `@metamask/` maintenance forks (#115)
 
 ## [7.0.0] - 2023-10-13
