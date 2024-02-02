@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@metamask/ethjs-contract": "^0.4.0",
-    "@metamask/ethjs-query": "^0.5.2",
+    "@metamask/ethjs-query": "^0.7.1",
     "@metamask/safe-event-emitter": "^3.0.0",
     "bn.js": "^4.12.0",
     "deep-equal": "^2.2.0",

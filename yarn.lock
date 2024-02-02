@@ -1034,32 +1034,31 @@
   resolved "https://registry.yarnpkg.com/@metamask/ethjs-filter/-/ethjs-filter-0.2.0.tgz#91528caabaf838d8e30c4c59733176c4664bc98a"
   integrity sha512-kzx65B3XK5yntSxVRSPwC8aHhAqWe9unoKLURdnSELegfWcTYSCJxRaER5IIQ31QGQU/cH7f/Zn0NMnX0Dsjew==
 
-"@metamask/ethjs-format@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-format/-/ethjs-format-0.2.9.tgz#f606390e7f9aa82ea6f179a3e0d7bd91ba49f483"
-  integrity sha512-jqtUTh/mqzUH/BIBLfnpjVse7zl428+Gnubn6EmAqJFk19PT7Nbw5X+FzvuDh3xkXXF0KXW1DNlxnfMDjrm3sg==
+"@metamask/ethjs-format@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-format/-/ethjs-format-0.3.0.tgz#d63642a0a9fa4ff41717e3a92f6cfc35b72b2cd3"
+  integrity sha512-Q0FhY/e7XYmP4y7qMhM3Fv86Z0kO+mont8BqBogDMOMvSa8bzjPy94XRKHarIcYICyCL9Kp2zGHVTuQR2J+JtA==
   dependencies:
-    "@metamask/ethjs-util" "^0.2.0"
-    bn.js "4.11.6"
+    "@metamask/ethjs-util" "^0.3.0"
+    "@metamask/number-to-bn" "^1.7.1"
+    bn.js "^5.2.1"
     ethjs-schema "0.2.1"
     is-hex-prefixed "1.0.0"
-    number-to-bn "1.7.0"
     strip-hex-prefix "1.0.0"
 
-"@metamask/ethjs-query@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-query/-/ethjs-query-0.5.2.tgz#7590b818d4c9ccf530286b5cc66b22c44e3e1872"
-  integrity sha512-ZiUYt6MeDWcCT6Cc35iD8jmwScLKyTHkXXo98ipJUrKuLQw3YhkxW507WT2UGUKiGh+RH4MrydIpe5MMOhl10g==
+"@metamask/ethjs-query@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-query/-/ethjs-query-0.7.1.tgz#fd4e6afd3b42258ad073906c7303b14ae9cf9ba2"
+  integrity sha512-ctyFom36AHq/6TW1CECOB0m/ESxVD24szkeLXFOnJ/5mlICA5bUEC62AUedAEF8pqVgbxhDkr1gwEwXn6W/j0Q==
   dependencies:
-    "@metamask/ethjs-format" "^0.2.9"
-    "@metamask/ethjs-rpc" "^0.3.0 !0.3.1"
-    babel-runtime "^6.26.0"
+    "@metamask/ethjs-format" "^0.3.0"
+    "@metamask/ethjs-rpc" "^0.4.0"
     promise-to-callback "^1.0.0"
 
-"@metamask/ethjs-rpc@^0.3.0 !0.3.1":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-rpc/-/ethjs-rpc-0.3.2.tgz#9d5afe074b2dd8e71f05a1704ab76904a198db00"
-  integrity sha512-GnMq498r6zcWYfVpO4IdxX0kjFygVg/GP86TpAvTTi7WVhXH49u26f3/SH/F4ZWvoenWLyRdTGpkVFO82Aaz/A==
+"@metamask/ethjs-rpc@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-rpc/-/ethjs-rpc-0.4.0.tgz#de4d4c74b6fb6c5d32d3cb55c645dd5bc3ada65a"
+  integrity sha512-lKTQfIXOyWsbGf9QqGaA6RnLcyvEeBPk5kAs1dXfWDpWL8+9TE0PbhPDQGjfn5Z9MFWEelJ2HD251wk0jAxD2A==
   dependencies:
     promise-to-callback "^1.0.0"
 
@@ -1067,6 +1066,14 @@
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@metamask/ethjs-util/-/ethjs-util-0.2.0.tgz#4c39c772e69512d527a3bd54a80a0b08565b5983"
   integrity sha512-i7kPlhnk2Doz7tQd90frh0WtrKS5FbYfQw2npYd3dVx5rhbvUjhyz7T/coVZSP3QDbszyzD3xmC50OxBmZou3Q==
+  dependencies:
+    is-hex-prefixed "1.0.0"
+    strip-hex-prefix "1.0.0"
+
+"@metamask/ethjs-util@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-util/-/ethjs-util-0.3.0.tgz#dcb56c85ea29e951a70ebf4213fb091a41c975fd"
+  integrity sha512-BXOEPmzDAzbsizZSW/wRW+58FBfj3K/1/jd7pZ9mKCOwlUCqhv8nyiiGTXQItRo+PH+GeuRGiR/IxuvSfw3CnQ==
   dependencies:
     is-hex-prefixed "1.0.0"
     strip-hex-prefix "1.0.0"
@@ -1079,6 +1086,14 @@
     "@metamask/rpc-errors" "^6.0.0"
     "@metamask/safe-event-emitter" "^3.0.0"
     "@metamask/utils" "^8.1.0"
+
+"@metamask/number-to-bn@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@metamask/number-to-bn/-/number-to-bn-1.7.1.tgz#a449ec8b2edba211e0dc3e1e0428ff2cc2bf7ab4"
+  integrity sha512-qCN+Au4amvcVii2LdOJNndYhdmk5Lk9tlStJhKpZ8tGeYQDJTghqYXJuSUVPHvfl6FUfKY1i1Or2j2EbnEerSQ==
+  dependencies:
+    bn.js "5.2.1"
+    strip-hex-prefix "1.0.0"
 
 "@metamask/rpc-errors@^6.0.0":
   version "6.0.0"
@@ -1288,6 +1303,11 @@ bn.js@4.11.6:
   version "4.11.6"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.6.tgz#53344adb14617a13f6e8dd2ce28905d1c0ba3215"
   integrity sha512-XWwnNNFCuuSQ0m3r3C4LE3EiORltHd9M05pq6FOlVeiophzRbMo50Sbz1ehl8K3Z+jw9+vmgnXefY1hz8X+2wA==
+
+bn.js@5.2.1, bn.js@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.1.tgz#0bc527a6a0d18d0aa8d5b0538ce4a77dccfa7b70"
+  integrity sha512-eXRvHzWyYPBuB4NBy0cmYQjGitUrtqwbvlzP3G6VFnNRbsZQIxQ10PbKKHt8gZ/HW/D/747aDl+QkDqg3KQLMQ==
 
 bn.js@^4.11.9, bn.js@^4.12.0:
   version "4.12.0"
