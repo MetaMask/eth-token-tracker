@@ -1017,10 +1017,10 @@
     "@metamask/safe-event-emitter" "^3.0.0"
     "@metamask/utils" "^8.1.0"
 
-"@metamask/ethjs-contract@^0.3.4":
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-contract/-/ethjs-contract-0.3.4.tgz#2451c31ca3a87b7e3c4c79cff7760abe15c87bcf"
-  integrity sha512-QnHkelS0BzMXBqgs+ifq+UIV+OvU8Y3F3kDbCUzpuNq4oxkS592DfZaxWzRc3IbjziMcs2VfJDIYRg2ra0wq4w==
+"@metamask/ethjs-contract@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-contract/-/ethjs-contract-0.4.0.tgz#f0461e95aeec71d15b9224e6372a95184da931a1"
+  integrity sha512-7V4PyUzRENUJqvLFLp5hqbsSDK2L49fonFw2f96my3cMaKOprbo6wSy0KhvXFJ3WQVmNoGMVNwvih+xWYwDyLw==
   dependencies:
     "@metamask/ethjs-filter" "^0.2.0"
     "@metamask/ethjs-util" "^0.2.0"
