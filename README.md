@@ -4,7 +4,7 @@ A JS module for tracking Ethereum tokens and their values over time.
 
 ## Installation
 
-`yarn install '@metamask/eth-token-tracker'`
+`yarn add @metamask/eth-token-tracker`
 
 ## Usage
 
@@ -43,6 +43,6 @@ tokenTracker.stop()
 ## Running tests
 
 ```bash
-yarn setup
+yarn install
 yarn test
 ```

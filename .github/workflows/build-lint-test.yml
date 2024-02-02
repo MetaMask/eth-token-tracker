@@ -15,7 +15,7 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'yarn'
       - name: Install Yarn dependencies
-        run: yarn --frozen-lockfile && yarn allow-scripts
+        run: yarn --immutable
 
   build:
     name: Build
@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn --frozen-lockfile && yarn allow-scripts
+      - run: yarn --immutable --immutable-cache
       - run: yarn build
       - name: Require clean working directory
         shell: bash
@@ -59,7 +59,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn --frozen-lockfile && yarn allow-scripts
+      - run: yarn --immutable --immutable-cache
       - run: yarn lint
       - name: Require clean working directory
         shell: bash
@@ -85,7 +85,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn --frozen-lockfile && yarn allow-scripts
+      - run: yarn --immutable --immutable-cache
       - run: yarn test
       - name: Require clean working directory
         shell: bash
