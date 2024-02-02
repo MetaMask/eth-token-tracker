@@ -1017,22 +1017,21 @@
     "@metamask/safe-event-emitter" "^3.0.0"
     "@metamask/utils" "^8.1.0"
 
-"@metamask/ethjs-contract@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-contract/-/ethjs-contract-0.4.0.tgz#f0461e95aeec71d15b9224e6372a95184da931a1"
-  integrity sha512-7V4PyUzRENUJqvLFLp5hqbsSDK2L49fonFw2f96my3cMaKOprbo6wSy0KhvXFJ3WQVmNoGMVNwvih+xWYwDyLw==
+"@metamask/ethjs-contract@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-contract/-/ethjs-contract-0.4.1.tgz#afdbc4c75c4c8ca5cbe11cffbafada999abe30e8"
+  integrity sha512-QU/SQ6ZUZYzxNo81VzHtyJoFb11gZCHk6tnMSNv1OgPCJui2DKsfgk+VIJHaarL9gUohYNDYkjnAvwafyKiJSA==
   dependencies:
-    "@metamask/ethjs-filter" "^0.2.0"
-    "@metamask/ethjs-util" "^0.2.0"
-    babel-runtime "^6.26.0"
+    "@metamask/ethjs-filter" "^0.3.0"
+    "@metamask/ethjs-util" "^0.3.0"
     ethjs-abi "^0.2.0"
     js-sha3 "^0.9.2"
     promise-to-callback "^1.0.0"
 
-"@metamask/ethjs-filter@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-filter/-/ethjs-filter-0.2.0.tgz#91528caabaf838d8e30c4c59733176c4664bc98a"
-  integrity sha512-kzx65B3XK5yntSxVRSPwC8aHhAqWe9unoKLURdnSELegfWcTYSCJxRaER5IIQ31QGQU/cH7f/Zn0NMnX0Dsjew==
+"@metamask/ethjs-filter@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@metamask/ethjs-filter/-/ethjs-filter-0.3.0.tgz#25340e00ec1bc7b04302b3cb5907d327316c7ca5"
+  integrity sha512-uXTIsJXQhMylX/cs2Z5J4hVVLTajoWOw+dVwLjWt221HO/pwWATJSjpMYsdWQul0slLSLQMIYlFUGOtDxZkh+Q==
 
 "@metamask/ethjs-format@^0.3.0":
   version "0.3.0"
@@ -1061,14 +1060,6 @@
   integrity sha512-lKTQfIXOyWsbGf9QqGaA6RnLcyvEeBPk5kAs1dXfWDpWL8+9TE0PbhPDQGjfn5Z9MFWEelJ2HD251wk0jAxD2A==
   dependencies:
     promise-to-callback "^1.0.0"
-
-"@metamask/ethjs-util@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@metamask/ethjs-util/-/ethjs-util-0.2.0.tgz#4c39c772e69512d527a3bd54a80a0b08565b5983"
-  integrity sha512-i7kPlhnk2Doz7tQd90frh0WtrKS5FbYfQw2npYd3dVx5rhbvUjhyz7T/coVZSP3QDbszyzD3xmC50OxBmZou3Q==
-  dependencies:
-    is-hex-prefixed "1.0.0"
-    strip-hex-prefix "1.0.0"
 
 "@metamask/ethjs-util@^0.3.0":
   version "0.3.0"
@@ -1276,14 +1267,6 @@ babel-plugin-polyfill-regenerator@^0.4.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.3.3"
 
-babel-runtime@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  integrity sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -1453,11 +1436,6 @@ core-js-compat@^3.25.1:
   integrity sha512-d690npR7MC6P0gq4npTl5n2VQeNAmUrJ90n+MHiKS7W2+xno4o3F5GDEuylSdi6EJ3VssibSGXOa1r3YXD3Mhw==
   dependencies:
     browserslist "^4.21.5"
-
-core-js@^2.4.0:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
-  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 crc-32@^1.2.0:
   version "1.2.2"
@@ -2486,11 +2464,6 @@ regenerate@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
-
-regenerator-runtime@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.13.11:
   version "0.13.11"
