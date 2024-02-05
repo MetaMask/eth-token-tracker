@@ -43,5 +43,6 @@ tokenTracker.stop()
 ## Running tests
 
 ```bash
+yarn setup
 yarn test
 ```
