@@ -7,12 +7,12 @@
     "node": "^16.20.1 || ^18.16.1 || >=20"
   },
   "scripts": {
-    "lint": "echo 'Skip'",
-    "prepublishOnly": "npm run build",
+    "lint": "yarn lint:dependencies",
+    "lint:dependencies": "yarn dedupe",
     "build": "babel --presets @babel/preset-env --plugins @babel/plugin-transform-runtime -d dist/ lib/",
     "test": "tape test/**/*.js",
     "buildSample": "browserify example/index.js -o bundle.js",
-    "setup": "yarn install && yarn allow-scripts"
+    "prepack": "./scripts/prepack.sh"
   },
   "repository": {
     "type": "git",
@@ -48,9 +48,9 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
-    "@babel/runtime": "^7.21.0",
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/runtime": "^7.21.0",
     "@lavamoat/allow-scripts": "^2.3.1",
     "@lavamoat/preinstall-always-fail": "^2.0.0",
     "ganache": "7.3.1",
@@ -60,6 +60,7 @@
   "peerDependencies": {
     "@babel/runtime": "^7.21.0"
   },
+  "packageManager": "yarn@3.2.1",
   "lavamoat": {
     "allowScripts": {
       "@lavamoat/preinstall-always-fail": false,
