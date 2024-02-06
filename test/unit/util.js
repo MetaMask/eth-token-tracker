@@ -76,3 +76,23 @@ test('token balance stringify 5', function (t) {
   t.equal(result, '0.12', 'Creates correct balance.')
   t.end()
 })
+
+test('token balance stringify with high precision after zero-series', function (t) {
+  const balance = new BN('120000000000000007', 10)
+  const decimals = new BN(18)
+
+  const result = util.stringifyBalance(balance, decimals)
+
+  t.equal(result, '0.120000000000000007', 'Creates correct balance.')
+  t.end()
+})
+
+test('token balance stringify with trailing zeroes', function (t) {
+  const balance = new BN('1200000000000', 10)
+  const decimals = new BN(13)
+
+  const result = util.stringifyBalance(balance, decimals)
+
+  t.equal(result, '0.12', 'Creates correct balance.')
+  t.end()
+})
