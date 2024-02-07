@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.2]
+- Update `bn.js` from `^4.12.0` to `^5.2.1` (#117)
+- Update `@metamask/ethjs-contract` from `^0.3.4` to `^0.4.1` (#117)
+- Update `@metamask/ethjs-query` from `^0.5.2` to `^0.7.1` (#117)
+- Remove dependency on `babel-runtime` (#117)
+- Add missing peerDependency `@babel/runtime` (#120)
+  - This is not a breaking change because this has always been an implicit dependency of this package.
+
 ## [7.0.1] - 2023-12-20
 - Update `ethjs` packages to `@metamask/` maintenance forks (#115)
 
