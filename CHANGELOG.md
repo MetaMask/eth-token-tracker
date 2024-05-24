@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0]
+
+### Removed
+
+- **BREAKING**: Remove properties `eth`, `contract`, `provider` from `TokenTracker` class ([#121](https://github.com/MetaMask/eth-token-tracker/pull/121))
+
+### Fixed
+
+- Update dependency `eth-block-tracker` from `^8.0.0` to `^9.0.2` ([#133](https://github.com/MetaMask/eth-token-tracker/pull/133))
+  - Mitigates polling-loop related concurrency issue in the block tracker.
+
 ## [7.0.2]
 
 ### Fixed
@@ -123,17 +134,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'mkdirp' and 'minimist' to address security advisory (#27)
 - Update 'kind-of' to address security advisory (#28)
 
-[Unreleased]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v7.0.2...HEAD
-[7.0.2]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v7.0.1...v7.0.2
-[7.0.1]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v7.0.0...v7.0.1
-[7.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v6.0.1...v7.0.0
-[6.0.1]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v6.0.0...v6.0.1
-[6.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v5.0.0...v6.0.0
-[5.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v4.1.0...v5.0.0
-[4.1.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v4.0.1...v4.1.0
-[4.0.1]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v4.0.0...v4.0.1
-[4.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v3.1.0...v4.0.0
-[3.1.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v3.0.1...v3.1.0
-[3.0.1]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v3.0.0...v3.0.1
-[3.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/compare/v2.0.0...v3.0.0
-[2.0.0]: git+ssh://git@github.com/MetaMask/eth-token-tracker/releases/tag/v2.0.0
+[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...HEAD
+[8.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.2...v8.0.0
+[7.0.2]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.1...v7.0.2
+[7.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.0...v7.0.1
+[7.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v6.0.1...v7.0.0
+[6.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v6.0.0...v6.0.1
+[6.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v5.0.0...v6.0.0
+[5.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v4.1.0...v5.0.0
+[4.1.0]: https://github.com/MetaMask/eth-token-tracker/compare/v4.0.1...v4.1.0
+[4.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v4.0.0...v4.0.1
+[4.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v3.1.0...v4.0.0
+[3.1.0]: https://github.com/MetaMask/eth-token-tracker/compare/v3.0.1...v3.1.0
+[3.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v3.0.0...v3.0.1
+[3.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v2.0.0...v3.0.0
+[2.0.0]: https://github.com/MetaMask/eth-token-tracker/releases/tag/v2.0.0
