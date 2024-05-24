@@ -8,6 +8,7 @@
   },
   "scripts": {
     "lint": "yarn lint:dependencies",
+    "lint:changelog": "auto-changelog validate --prettier",
     "lint:dependencies": "yarn dedupe",
     "build": "babel --presets @babel/preset-env --plugins @babel/plugin-transform-runtime -d dist/ lib/",
     "test": "tape test/**/*.js",
@@ -53,6 +54,7 @@
     "@babel/runtime": "^7.21.0",
     "@lavamoat/allow-scripts": "^2.3.1",
     "@lavamoat/preinstall-always-fail": "^2.0.0",
+    "@metamask/auto-changelog": "^3.4.3",
     "ganache": "7.3.1",
     "solc": "^0.4.26",
     "tape": "^5.6.1"
