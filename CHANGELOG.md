@@ -9,13 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.0.0]
 
-### Fixed
-- Update dependency `eth-block-tracker` from `^8.0.0` to `^9.0.2` ([#133](https://github.com/MetaMask/eth-token-tracker/pull/133))
-  - Mitigates polling-loop related concurrency issue in the block tracker.
-
 ### Removed
 
 - **BREAKING**: Remove properties `eth`, `contract`, `provider` from `TokenTracker` class ([#121](https://github.com/MetaMask/eth-token-tracker/pull/121))
+
+### Fixed
+
+- Update dependency `eth-block-tracker` from `^8.0.0` to `^9.0.2` ([#133](https://github.com/MetaMask/eth-token-tracker/pull/133))
+  - Mitigates polling-loop related concurrency issue in the block tracker.
 
 ## [7.0.2]
 
