@@ -9,15 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.0.0]
 
-### Uncategorized
+### Fixed
+- Update dependency `eth-block-tracker` from `^8.0.0` to `^9.0.2` ([#133](https://github.com/MetaMask/eth-token-tracker/pull/133))
+  - Mitigates polling-loop related concurrency issue in the block tracker.
 
-- ci: Add workflows for assisted release and publishing ([#134](https://github.com/MetaMask/eth-token-tracker/pull/134))
-- deps: eth-block-tracker@^8.0.0 -> @metamask/eth-block-tracker@^9.0.2 ([#133](https://github.com/MetaMask/eth-token-tracker/pull/133))
-- Bump ip from 2.0.0 to 2.0.1 ([#124](https://github.com/MetaMask/eth-token-tracker/pull/124))
-- Remove properties eth,contract,provider from TokenTracker class ([#121](https://github.com/MetaMask/eth-token-tracker/pull/121))
-- Bump tar from 6.2.0 to 6.2.1 ([#131](https://github.com/MetaMask/eth-token-tracker/pull/131))
-- Update security code scanner file ([#126](https://github.com/MetaMask/eth-token-tracker/pull/126))
-- Enabling security code scanner ([#125](https://github.com/MetaMask/eth-token-tracker/pull/125))
+### Removed
+
+- **BREAKING**: Remove properties `eth`, `contract`, `provider` from `TokenTracker` class ([#121](https://github.com/MetaMask/eth-token-tracker/pull/121))
 
 ## [7.0.2]
 
