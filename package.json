@@ -4,7 +4,7 @@
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "dist/index.js",
   "engines": {
-    "node": "^16.20.1 || ^18.16.1 || >=20"
+    "node": "^18.16.1 || ^20 || >=22"
   },
   "scripts": {
     "lint": "yarn lint:dependencies",
@@ -38,7 +38,7 @@
     "/lib"
   ],
   "dependencies": {
-    "@metamask/eth-block-tracker": "^9.0.2",
+    "@metamask/eth-block-tracker": "^10.0.0",
     "@metamask/ethjs-contract": "^0.4.1",
     "@metamask/ethjs-query": "^0.7.1",
     "@metamask/safe-event-emitter": "^3.0.0",
