@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [9.0.0]
 
+### Changed
+
+- **BREAKING**: Drop support for Node.js v16 and v21 ([#140](https://github.com/MetaMask/eth-token-tracker/pull/140))
+- Update `@metamask/eth-block-tracker` from `^9.0.2` to `^10.0.0` ([#141](https://github.com/MetaMask/eth-token-tracker/pull/141))
+
 ## [8.0.0]
 
 ### Removed
