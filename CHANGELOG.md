@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.0.0]
+
+### Changed
+
+- **BREAKING**: Drop support for Node.js v16 and v21 ([#140](https://github.com/MetaMask/eth-token-tracker/pull/140))
+- Update `@metamask/eth-block-tracker` from `^9.0.2` to `^10.0.0` ([#141](https://github.com/MetaMask/eth-token-tracker/pull/141))
+
 ## [8.0.0]
 
 ### Removed
@@ -134,7 +141,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'mkdirp' and 'minimist' to address security advisory (#27)
 - Update 'kind-of' to address security advisory (#28)
 
-[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v9.0.0...HEAD
+[9.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...v9.0.0
 [8.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.2...v8.0.0
 [7.0.2]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.1...v7.0.2
 [7.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.0...v7.0.1
