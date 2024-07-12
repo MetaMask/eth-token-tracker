@@ -368,7 +368,7 @@ test('tracker with broken provider', async function (t) {
   try {
     tracker = new TokenTracker({
       provider: {
-        sendAsync: () => {
+        request: () => {
           throw new Error('Fake provider error')
         }
       },
@@ -392,7 +392,7 @@ test('tracker with broken provider and includeFailedTokens', async function (t) 
   try {
     tracker = new TokenTracker({
       provider: {
-        sendAsync: () => {
+        request: () => {
           throw new Error('Fake provider error')
         }
       },
