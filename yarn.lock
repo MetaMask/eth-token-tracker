@@ -1467,29 +1467,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/eth-block-tracker@npm:^10.1.0":
-  version: 10.1.0
-  resolution: "@metamask/eth-block-tracker@npm:10.1.0"
+"@metamask/eth-block-tracker@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "@metamask/eth-block-tracker@npm:11.0.1"
   dependencies:
-    "@metamask/eth-json-rpc-provider": ^4.1.0
-    "@metamask/safe-event-emitter": ^3.0.0
-    "@metamask/utils": ^8.1.0
+    "@metamask/eth-json-rpc-provider": ^4.1.1
+    "@metamask/safe-event-emitter": ^3.1.1
+    "@metamask/utils": ^9.1.0
     json-rpc-random-id: ^1.0.1
     pify: ^5.0.0
-  checksum: 9fb7deeb177c6989481f5e7c11015c274c5b43eec43fc05a5a02f284f805d06887d429c6568cdec4fac1c0c51a5f7e6814b9413cc0d7eef46d993ad10dbe696a
+  checksum: 74c1259f7c2ee3074d5d5dc337fb81a89f562c755756210cd3eccc7fb9674c9101d58d88d6ac4c1a48a5676f85b99b87773819b26c52f41eae8e6ced454e11f9
   languageName: node
   linkType: hard
 
-"@metamask/eth-json-rpc-provider@npm:^4.1.0":
-  version: 4.1.1
-  resolution: "@metamask/eth-json-rpc-provider@npm:4.1.1"
+"@metamask/eth-json-rpc-provider@npm:^4.1.1":
+  version: 4.1.5
+  resolution: "@metamask/eth-json-rpc-provider@npm:4.1.5"
   dependencies:
-    "@metamask/json-rpc-engine": ^9.0.1
-    "@metamask/rpc-errors": ^6.3.1
+    "@metamask/json-rpc-engine": ^10.0.0
+    "@metamask/rpc-errors": ^7.0.0
     "@metamask/safe-event-emitter": ^3.0.0
-    "@metamask/utils": ^9.0.0
+    "@metamask/utils": ^9.1.0
     uuid: ^8.3.2
-  checksum: a429d9511f33a62eb5f2f2f82f26d30a2a8f27d48aa3c8819d6ba03c2c0eef0e7eee7894a0899dd9af4b7d7f3e2092c25304bb34ab6e8d0daffee717f4109b5c
+  checksum: ec291c0814e24d47412f1a5899ff0a0a5383489cf9a165b825a580a636bd0f0f89e270a8ad5f5d63a726aae4836ed32048f914855df685f18d0790616d51f954
   languageName: node
   linkType: hard
 
@@ -1505,7 +1505,7 @@ __metadata:
     "@lavamoat/allow-scripts": ^2.3.1
     "@lavamoat/preinstall-always-fail": ^2.0.0
     "@metamask/auto-changelog": ^3.4.3
-    "@metamask/eth-block-tracker": ^10.1.0
+    "@metamask/eth-block-tracker": ^11.0.1
     "@metamask/ethjs-contract": ^0.4.1
     "@metamask/ethjs-query": ^0.7.1
     "@metamask/safe-event-emitter": ^3.0.0
@@ -1596,14 +1596,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/json-rpc-engine@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "@metamask/json-rpc-engine@npm:9.0.1"
+"@metamask/json-rpc-engine@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@metamask/json-rpc-engine@npm:10.0.0"
   dependencies:
-    "@metamask/rpc-errors": ^6.3.1
+    "@metamask/rpc-errors": ^7.0.0
     "@metamask/safe-event-emitter": ^3.0.0
-    "@metamask/utils": ^9.0.0
-  checksum: 60889825a633f2ae8f5998c3c426c52e580d761871983eb4e25bedc868fad1c367b496b3bd6913274b118444987eda64669a1eb49acda1a7fc2e2a0d75dd1e9a
+    "@metamask/utils": ^9.1.0
+  checksum: 0ed1cabe62774d7140c7e27b4485d0a536a95194628ab90f6543cdd7e0a80b80e2789929900c161728b25fb29782d048a18c981d728516e643f4b3be4d971663
   languageName: node
   linkType: hard
 
@@ -1617,20 +1617,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/rpc-errors@npm:^6.3.1":
-  version: 6.3.1
-  resolution: "@metamask/rpc-errors@npm:6.3.1"
+"@metamask/rpc-errors@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@metamask/rpc-errors@npm:7.0.0"
   dependencies:
     "@metamask/utils": ^9.0.0
     fast-safe-stringify: ^2.0.6
-  checksum: 8761f5c0161cb3b342abd3ccccbd7b792f36a987e1f22c3f89b1bd29f72a2e35a2c91b58164fdd9dc3e5b67157500dcbdb5d04245117c14310c34cf42f7b8463
+  checksum: 07984f473e9e7c0f57abee53de8da282d113b3e293453858f44b58a43706486b36dfbe2f46de4a92324797a53730f410d32c382f138ef015e250efacb7de2081
   languageName: node
   linkType: hard
 
-"@metamask/safe-event-emitter@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@metamask/safe-event-emitter@npm:3.0.0"
-  checksum: 8dc58a76f9f75bf2405931465fc311c68043d851e6b8ebe9f82ae339073a08a83430dba9338f8e3adc4bfc8067607125074bcafa32baee3a5157f42343dc89e5
+"@metamask/safe-event-emitter@npm:^3.0.0, @metamask/safe-event-emitter@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@metamask/safe-event-emitter@npm:3.1.1"
+  checksum: e24db4d7c20764bfc5b025065f92518c805f0ffb1da4820078b8cff7dcae964c0f354cf053fcb7ac659de015d5ffdf21aae5e8d44e191ee8faa9066855f22653
   languageName: node
   linkType: hard
 
@@ -1641,26 +1641,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/utils@npm:^8.1.0":
-  version: 8.4.0
-  resolution: "@metamask/utils@npm:8.4.0"
-  dependencies:
-    "@ethereumjs/tx": ^4.2.0
-    "@noble/hashes": ^1.3.1
-    "@scure/base": ^1.1.3
-    "@types/debug": ^4.1.7
-    debug: ^4.3.4
-    pony-cause: ^2.1.10
-    semver: ^7.5.4
-    superstruct: ^1.0.3
-    uuid: ^9.0.1
-  checksum: b0397e97bac7192f6189a8625a2dfcb56d3c2cf4dd2cb3d4e012a7e9786f04f59f6917805544bc131a6dacd2c8344e237ae43ad47429bb5eb35c6cf1248440b4
-  languageName: node
-  linkType: hard
-
-"@metamask/utils@npm:^9.0.0":
-  version: 9.1.0
-  resolution: "@metamask/utils@npm:9.1.0"
+"@metamask/utils@npm:^9.0.0, @metamask/utils@npm:^9.1.0":
+  version: 9.3.0
+  resolution: "@metamask/utils@npm:9.3.0"
   dependencies:
     "@ethereumjs/tx": ^4.2.0
     "@metamask/superstruct": ^3.1.0
@@ -1671,7 +1654,7 @@ __metadata:
     pony-cause: ^2.1.10
     semver: ^7.5.4
     uuid: ^9.0.1
-  checksum: 01f2c71a8f06158d5335bfe96bfd2f3aa39ec6b2323c5d0ff1d3136071a3e8ff7c1804d640ba1d4e07f96f3e68a95ff7729ddfcd34b373e5fefd86d6ef12d034
+  checksum: f720b0f7bdd46054aa88d15a9702e1de6d7200a1ca1d4f6bc48761b039f1bbffb46ac88bc87fe79e66128c196d424f3b9ef071b3cb4b40139223786d56da35e0
   languageName: node
   linkType: hard
 
@@ -5087,13 +5070,6 @@ __metadata:
   dependencies:
     is-hex-prefixed: 1.0.0
   checksum: 4cafe7caee1d281d3694d14920fd5d3c11adf09371cef7e2ccedd5b83efd9e9bd2219b5d6ce6e809df6e0f437dc9d30db1192116580875698aad164a6d6b285b
-  languageName: node
-  linkType: hard
-
-"superstruct@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "superstruct@npm:1.0.3"
-  checksum: 761790bb111e6e21ddd608299c252f3be35df543263a7ebbc004e840d01fcf8046794c274bcb351bdf3eae4600f79d317d085cdbb19ca05803a4361840cc9bb1
   languageName: node
   linkType: hard
 
