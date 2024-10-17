@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [10.0.0]
+
+### Uncategorized
+
+- deps: @metamask/eth-block-tracker@^10.1.0->^11.0.1 ([#148](https://github.com/MetaMask/eth-token-tracker/pull/148))
+- Bump elliptic from 6.5.4 to 6.5.7 in the npm_and_yarn group ([#147](https://github.com/MetaMask/eth-token-tracker/pull/147))
+- adapt to eip-1193 provider changes ([#143](https://github.com/MetaMask/eth-token-tracker/pull/143))
+
 ## [9.0.0]
 
 ### Changed
@@ -141,7 +149,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'mkdirp' and 'minimist' to address security advisory (#27)
 - Update 'kind-of' to address security advisory (#28)
 
-[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v9.0.0...HEAD
+[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.0...HEAD
+[10.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v9.0.0...v10.0.0
 [9.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...v9.0.0
 [8.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.2...v8.0.0
 [7.0.2]: https://github.com/MetaMask/eth-token-tracker/compare/v7.0.1...v7.0.2
