@@ -9,11 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [10.0.0]
 
-### Uncategorized
+### Changed
 
-- deps: @metamask/eth-block-tracker@^10.1.0->^11.0.1 ([#148](https://github.com/MetaMask/eth-token-tracker/pull/148))
-- Bump elliptic from 6.5.4 to 6.5.7 in the npm_and_yarn group ([#147](https://github.com/MetaMask/eth-token-tracker/pull/147))
-- adapt to eip-1193 provider changes ([#143](https://github.com/MetaMask/eth-token-tracker/pull/143))
+- **BREAKING**: Adapt to EIP-1193 provider changes by replacing the deprecated `sendAsync` method with the `request` method ([#143](https://github.com/MetaMask/eth-token-tracker/pull/143))
+- **BREAKING**: Bump `@metamask/eth-block-tracker` from `^10.1.0` to `^11.0.1` ([#148](https://github.com/MetaMask/eth-token-tracker/pull/148))
 
 ## [9.0.0]
 
