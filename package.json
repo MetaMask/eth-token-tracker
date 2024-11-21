@@ -52,7 +52,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime": "^7.21.0",
-    "@lavamoat/allow-scripts": "^2.3.1",
+    "@lavamoat/allow-scripts": "^3.2.1",
     "@lavamoat/preinstall-always-fail": "^2.0.0",
     "@metamask/auto-changelog": "^3.4.3",
     "ganache": "7.3.1",
