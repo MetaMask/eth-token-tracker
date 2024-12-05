@@ -9,10 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [10.0.1]
 
-### Uncategorized
+### Changed
 
-- chore(deps): bump `@metamask/eth-block-tracker` to `^11.0.3` ([#153](https://github.com/MetaMask/eth-token-tracker/pull/153))
-- Bump elliptic from 6.5.7 to 6.6.0 in the npm_and_yarn group ([#151](https://github.com/MetaMask/eth-token-tracker/pull/151))
+- Bump `@metamask/eth-block-tracker` from `^11.0.1` to `^11.0.3` ([#153](https://github.com/MetaMask/eth-token-tracker/pull/153))
 
 ## [10.0.0]
 
