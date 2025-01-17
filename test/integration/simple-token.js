@@ -11,17 +11,16 @@ const less = '10000000000000000000' // 100 x 10 ^ 17
 
 test('StandardToken balances are tracked', function (t) {
   let addresses
-  let eth
   let token
   let tokenAddress
   let tokenTracker
+  let provider
   setupSimpleTokenEnvironment()
   .then((environment) => {
     addresses = environment.addresses
-    eth = environment.eth
     token = environment.token
     tokenAddress = environment.tokenAddress
-    const { provider } = environment
+    provider = environment.provider
     tokenTracker = new TokenTracker({
       userAddress: addresses[0],
       provider,
@@ -43,8 +42,11 @@ test('StandardToken balances are tracked', function (t) {
     t.equal(tracked.balance.toString(10), qty, 'initial balance loaded')
     return token.transfer(addresses[1], less)
   })
-  .then((txHash) => {
-    return eth.getTransactionReceipt(txHash)
+  .then((tx) => {
+    return provider.request({
+      method: 'eth_getTransactionReceipt',
+      params: [tx.hash],
+    })
   })
   .then((receipt) => {
     var a = new Promise((res, rej) => { setTimeout(res, 200) })

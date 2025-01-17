@@ -1804,7 +1804,7 @@ __metadata:
     "@metamask/safe-event-emitter": ^3.0.0
     bn.js: ^5.2.1
     deep-equal: ^2.2.0
-    ganache: 7.3.1
+    ganache: 7.9.2
     human-standard-token-abi: ^2.0.0
     solc: ^0.4.26
     tape: ^5.6.1
@@ -2111,13 +2111,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trufflesuite/bigint-buffer@npm:1.1.9":
-  version: 1.1.9
-  resolution: "@trufflesuite/bigint-buffer@npm:1.1.9"
+"@trufflesuite/bigint-buffer@npm:1.1.10":
+  version: 1.1.10
+  resolution: "@trufflesuite/bigint-buffer@npm:1.1.10"
   dependencies:
     node-gyp: latest
-    node-gyp-build: 4.3.0
-  checksum: 627dcff2cae7afe31432646232518363869e89b300f90f88ca68d903d0bdc79119975a5bc338223c03c1a4484cfac6d9cf4413ef20933a69eee48dd925519165
+    node-gyp-build: 4.4.0
+  checksum: e1dc5e4fbf348a55e660c0055267021eb04cbbdb7f6b0ee983ad32cd4aae1200be448a2ca3963c7d19c7c936d42f66c1ff8b5e4e2332cb1a9e3f870ff818dce4
+  languageName: node
+  linkType: hard
+
+"@trufflesuite/uws-js-unofficial@npm:20.30.0-unofficial.0":
+  version: 20.30.0-unofficial.0
+  resolution: "@trufflesuite/uws-js-unofficial@npm:20.30.0-unofficial.0"
+  dependencies:
+    bufferutil: 4.0.7
+    utf-8-validate: 6.0.3
+    ws: 8.13.0
+  dependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 67e67140877f89b31c504a057d26853d5780b09c733d92c32480d2f0dfe4e98fb822860f3efeb06f379daecee70d67185f88a7b6f3406d18526e501b36c40fd3
   languageName: node
   linkType: hard
 
@@ -2181,7 +2197,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abstract-leveldown@npm:^7.2.0":
+"abstract-level@npm:1.0.3":
+  version: 1.0.3
+  resolution: "abstract-level@npm:1.0.3"
+  dependencies:
+    buffer: ^6.0.3
+    catering: ^2.1.0
+    is-buffer: ^2.0.5
+    level-supports: ^4.0.0
+    level-transcoder: ^1.0.1
+    module-error: ^1.0.1
+    queue-microtask: ^1.2.3
+  checksum: 70d61a3924526ebc257b138992052f9ff571a6cee5a7660836e37a1cc7081273c3acf465dd2f5e1897b38dc743a6fd9dba14a5d8a2a9d39e5787cd3da99f301d
+  languageName: node
+  linkType: hard
+
+"abstract-leveldown@npm:7.2.0, abstract-leveldown@npm:^7.2.0":
   version: 7.2.0
   resolution: "abstract-leveldown@npm:7.2.0"
   dependencies:
@@ -2314,6 +2345,24 @@ __metadata:
     es-abstract: ^1.20.4
     is-string: ^1.0.7
   checksum: 6a11683fd0148a1f70108ad20eeb5e174813dc22799264584a543d463810ed42261aad0c1c5de1097ea515ec159d20deb9babb465f4ae3ceeb11e28094c3b5b3
+  languageName: node
+  linkType: hard
+
+"async-eventemitter@npm:0.2.4":
+  version: 0.2.4
+  resolution: "async-eventemitter@npm:0.2.4"
+  dependencies:
+    async: ^2.4.0
+  checksum: b9e77e0f58ebd7188c50c23d613d1263e0ab501f5e677e02b57cc97d7032beaf60aafa189887e7105569c791e212df4af00b608be1e9a4c425911d577124911e
+  languageName: node
+  linkType: hard
+
+"async@npm:^2.4.0":
+  version: 2.6.4
+  resolution: "async@npm:2.6.4"
+  dependencies:
+    lodash: ^4.17.14
+  checksum: a52083fb32e1ebe1d63e5c5624038bb30be68ff07a6c8d7dfe35e47c93fc144bd8652cbec869e0ac07d57dde387aa5f1386be3559cdee799cb1f789678d88e19
   languageName: node
   linkType: hard
 
@@ -2487,6 +2536,16 @@ __metadata:
     node-gyp: latest
     node-gyp-build: ^4.3.0
   checksum: 37d5bef7cb38d29f9377b8891ff8a57f53ae6057313d77a8aa2a7417df37a72f16987100796cb2f1e1862f3eb80057705f3c052615ec076a0dcc7aa6c83b68c9
+  languageName: node
+  linkType: hard
+
+"bufferutil@npm:4.0.7":
+  version: 4.0.7
+  resolution: "bufferutil@npm:4.0.7"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: f75aa87e3d1b99b87a95f60a855e63f70af07b57fb8443e75a2ddfef2e47788d130fdd46e3a78fd7e0c10176082b26dfbed970c5b8632e1cc299cafa0e93ce45
   languageName: node
   linkType: hard
 
@@ -2871,9 +2930,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"elliptic@npm:^6.5.2":
-  version: 6.6.0
-  resolution: "elliptic@npm:6.6.0"
+"elliptic@npm:^6.5.4":
+  version: 6.6.1
+  resolution: "elliptic@npm:6.6.1"
   dependencies:
     bn.js: ^4.11.9
     brorand: ^1.1.0
@@ -2882,7 +2941,7 @@ __metadata:
     inherits: ^2.0.4
     minimalistic-assert: ^1.0.1
     minimalistic-crypto-utils: ^1.0.1
-  checksum: e912349b883e694bfe65005214237a470c9a098a6ba36fd24396d0ab07feb399920c0738aeed1aed6cf5dca9c64fd479e212faed3a75c9d81453671ef0de5157
+  checksum: 27b14a52f68bbbc0720da259f712cb73e953f6d2047958cd02fb0d0ade2e83849dc39fb4af630889c67df8817e24237428cf59c4f4c07700f755b401149a7375
   languageName: node
   linkType: hard
 
@@ -3209,19 +3268,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ganache@npm:7.3.1":
-  version: 7.3.1
-  resolution: "ganache@npm:7.3.1"
+"ganache@npm:7.9.2":
+  version: 7.9.2
+  resolution: "ganache@npm:7.9.2"
   dependencies:
-    "@trufflesuite/bigint-buffer": 1.1.9
+    "@trufflesuite/bigint-buffer": 1.1.10
+    "@trufflesuite/uws-js-unofficial": 20.30.0-unofficial.0
     "@types/bn.js": ^5.1.0
     "@types/lru-cache": 5.1.1
     "@types/seedrandom": 3.0.1
+    abstract-level: 1.0.3
+    abstract-leveldown: 7.2.0
+    async-eventemitter: 0.2.4
     bufferutil: 4.0.5
     emittery: 0.10.0
-    keccak: 3.0.1
+    keccak: 3.0.2
     leveldown: 6.1.0
-    secp256k1: 4.0.2
+    secp256k1: 4.0.3
     utf-8-validate: 5.0.7
   dependenciesMeta:
     bufferutil:
@@ -3231,7 +3294,7 @@ __metadata:
   bin:
     ganache: dist/node/cli.js
     ganache-cli: dist/node/cli.js
-  checksum: 46fe69554dbf12c0f6b2d8cd94945d6989864d01da9daee98f453e26fa6b87008ab92f9a18580872258a48cf49a651ff732e3f754a89f7ceba8bb35f953a1f59
+  checksum: 30af47d29e8f10e79f41f2f29e126c36c157767bdf19d8d8f101cfa9bc75eaca933c1c470557041728eef2dd7e2bd8d4715691996b5951d04f8056036cf6cfa0
   languageName: node
   linkType: hard
 
@@ -4016,14 +4079,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keccak@npm:3.0.1":
-  version: 3.0.1
-  resolution: "keccak@npm:3.0.1"
+"keccak@npm:3.0.2":
+  version: 3.0.2
+  resolution: "keccak@npm:3.0.2"
   dependencies:
     node-addon-api: ^2.0.0
     node-gyp: latest
     node-gyp-build: ^4.2.0
-  checksum: 1de1b62fbb3e035ee186232b11f154bd5c2c12a2d910bc8ec313dab412b6f39ddc51d3a105618dd8de752875da0ead21abb0eb1d4e7d7b17771a4acbb7159390
+    readable-stream: ^3.6.0
+  checksum: 39a7d6128b8ee4cb7dcd186fc7e20c6087cc39f573a0f81b147c323f688f1f7c2b34f62c4ae189fe9b81c6730b2d1228d8a399cdc1f3d8a4c8f030cdc4f20272
   languageName: node
   linkType: hard
 
@@ -4064,6 +4128,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"level-supports@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "level-supports@npm:4.0.1"
+  checksum: d4552b42bb8cdeada07b0f6356c7a90fefe76279147331f291aceae26e3e56d5f927b09ce921647c0230bfe03ddfbdcef332be921e5c2194421ae2bfa3cf6368
+  languageName: node
+  linkType: hard
+
+"level-transcoder@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "level-transcoder@npm:1.0.1"
+  dependencies:
+    buffer: ^6.0.3
+    module-error: ^1.0.1
+  checksum: 304f08d802faf3491a533b6d87ad8be3cabfd27f2713bbe9d4c633bf50fcb9460eab5a6776bf015e101ead7ba1c1853e05e7f341112f17a9d0cb37ee5a421a25
+  languageName: node
+  linkType: hard
+
 "leveldown@npm:6.1.0":
   version: 6.1.0
   resolution: "leveldown@npm:6.1.0"
@@ -4100,6 +4181,13 @@ __metadata:
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
+  languageName: node
+  linkType: hard
+
+"lodash@npm:^4.17.14":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
   languageName: node
   linkType: hard
 
@@ -4381,6 +4469,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"module-error@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "module-error@npm:1.0.2"
+  checksum: 5d653e35bd55b3e95f8aee2cdac108082ea892e71b8f651be92cde43e4ee86abee4fa8bd7fc3fe5e68b63926d42f63c54cd17b87a560c31f18739295575a3962
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -4418,14 +4513,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp-build@npm:4.3.0":
-  version: 4.3.0
-  resolution: "node-gyp-build@npm:4.3.0"
+"node-gyp-build@npm:4.4.0":
+  version: 4.4.0
+  resolution: "node-gyp-build@npm:4.4.0"
   bin:
     node-gyp-build: bin.js
     node-gyp-build-optional: optional.js
     node-gyp-build-test: build-test.js
-  checksum: 1ecab16d9f275174d516e223f60f65ebe07540347d5c04a6a7d6921060b7f2e3af4f19463d9d1dcedc452e275c2ae71354a99405e55ebd5b655bb2f38025c728
+  checksum: 972a059f960253d254e0b23ce10f54c8982236fc0edcab85166d0b7f87443b2ce98391c877cfb2f6eeafcf03c538c5f4dd3e0bfff03828eb48634f58f4c64343
   languageName: node
   linkType: hard
 
@@ -5076,15 +5171,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"secp256k1@npm:4.0.2":
-  version: 4.0.2
-  resolution: "secp256k1@npm:4.0.2"
+"secp256k1@npm:4.0.3":
+  version: 4.0.3
+  resolution: "secp256k1@npm:4.0.3"
   dependencies:
-    elliptic: ^6.5.2
+    elliptic: ^6.5.4
     node-addon-api: ^2.0.0
     node-gyp: latest
     node-gyp-build: ^4.2.0
-  checksum: 0d0d42e8033aee5aec5caaaa26d90fcaec4bf5e24dc4652552ddaa60734c2d95e90f7d95697b521fe833363c629d5ff623227961de86686c7a0ed5b5ffc1ebd0
+  checksum: 21e219adc0024fbd75021001358780a3cc6ac21273c3fcaef46943af73969729709b03f1df7c012a0baab0830fb9a06ccc6b42f8d50050c665cb98078eab477b
   languageName: node
   linkType: hard
 
@@ -5599,6 +5694,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"utf-8-validate@npm:6.0.3":
+  version: 6.0.3
+  resolution: "utf-8-validate@npm:6.0.3"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: 5e21383c81ff7469c1912119ca69d07202d944c73ddd8a54b84dddcc546b939054e5101c78c294e494d206fe93bd43428adc635a0660816b3ec9c8ec89286ac4
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -5792,6 +5897,21 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 3a990b32ed08c72070d5e8913e14dfcd831919205be52a3ff0b4cdd998c8d554f167c9df3841605cde8b11d607768cacab3e823c58c96a5c08c987e093eb767a
+  languageName: node
+  linkType: hard
+
+"ws@npm:8.13.0":
+  version: 8.13.0
+  resolution: "ws@npm:8.13.0"
+  peerDependencies:
+    bufferutil: ^4.0.1
+    utf-8-validate: ">=5.0.2"
+  peerDependenciesMeta:
+    bufferutil:
+      optional: true
+    utf-8-validate:
+      optional: true
+  checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
   languageName: node
   linkType: hard
 

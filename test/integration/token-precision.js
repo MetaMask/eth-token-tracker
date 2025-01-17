@@ -2,16 +2,15 @@ const fs = require('fs')
 const path = require('path')
 const test = require('tape')
 const ganache = require('ganache')
-const provider = ganache.provider()
 const solc = require('solc')
 const TokenTracker = require('../../lib')
 const BN = require('bn.js')
 const util = require('../../lib/util')
+const { ContractFactory } = require('@ethersproject/contracts')
+const { Web3Provider } = require('@ethersproject/providers')
 
-const Eth = require('@metamask/ethjs-query')
-const EthContract = require('@metamask/ethjs-contract')
-const eth = new Eth(provider)
-const contract = new EthContract(eth)
+const provider = ganache.provider()
+const ethersProvider = new Web3Provider(provider)
 let count = 0
 
 const source = fs.readFileSync(path.resolve(__dirname, '..', 'contracts/ZeppelinToken.sol')).toString();
@@ -20,10 +19,10 @@ const compiled = solc.compile(source, 1)
 const SimpleTokenDeployer = compiled.contracts[':TutorialToken']
 
 let addresses = []
-let token, tokenAddress, tracked
+let tokenAddress, tracked
 
 test('testrpc has addresses', function (t) {
-  eth.accounts()
+  ethersProvider.listAccounts()
   .then((accounts) => {
     addresses = accounts
     t.ok(accounts, 'loaded accounts')
@@ -99,32 +98,23 @@ function generateTestWithParams(opts = {}) {
   test(`Generated token precision test ${++count}`, function (t) {
     const abi = JSON.parse(SimpleTokenDeployer.interface)
     const owner = addresses[0]
-    const StandardToken = contract(abi, SimpleTokenDeployer.bytecode, {
-      from: owner,
-      gas: '3000000',
-      gasPrice: '875000000',
-    })
-    StandardToken.new(qty, precision)
-    .then((txHash) => {
-      t.ok(txHash, 'publishes a txHash')
+    const factory = new ContractFactory(abi, SimpleTokenDeployer.bytecode, ethersProvider.getSigner(owner))
 
-      return new Promise((res, rej) => {
-        setTimeout(() => res(txHash), 300)
-      })
+    factory.deploy(qty, precision, {
+      gasLimit: 3000000,
+      gasPrice: 875000000
     })
-    .then((txHash) => {
-      return eth.getTransactionReceipt(txHash)
+    .then((token) => {
+      t.ok(token.deployTransaction.hash, 'publishes a txHash')
+      return token.deployed()
     })
-    .then((receipt) => {
-      const addr = receipt.contractAddress
-      t.ok(addr, 'should have an address')
-      tokenAddress = addr
-      token = StandardToken.at(addr)
-      return token.balanceOf(owner)
+    .then((deployedToken) => {
+      t.ok(deployedToken.address, 'should have an address')
+      tokenAddress = deployedToken.address
+      return deployedToken.balanceOf(owner)
     })
-    .then((res) => {
-      const balance = res[0]
-      t.equal(balance.toString(10), qty, 'owner should have all')
+    .then((balance) => {
+      t.equal(balance.toString(), qty, 'owner should have all')
 
       var tokenTracker = new TokenTracker({
         userAddress: addresses[0],
