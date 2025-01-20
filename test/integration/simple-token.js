@@ -11,14 +11,14 @@ const less = '10000000000000000000' // 100 x 10 ^ 17
 
 test('StandardToken balances are tracked', function (t) {
   let addresses
-  let token
+  let contract
   let tokenAddress
   let tokenTracker
   let provider
   setupSimpleTokenEnvironment()
   .then((environment) => {
     addresses = environment.addresses
-    token = environment.token
+    contract = environment.contract
     tokenAddress = environment.tokenAddress
     provider = environment.provider
     tokenTracker = new TokenTracker({
@@ -40,7 +40,7 @@ test('StandardToken balances are tracked', function (t) {
   .then(() => {
     tracked = tokenTracker.serialize()[0]
     t.equal(tracked.balance.toString(10), qty, 'initial balance loaded')
-    return token.transfer(addresses[1], less)
+    return contract.transfer(addresses[1], less)
   })
   .then((tx) => {
     return provider.request({
@@ -79,11 +79,11 @@ test('StandardToken balances are tracked', function (t) {
 
 test('StandardToken balance changes are emitted and symbol fetched', function (t) {
   let addresses
-  let token
+  let contract
   setupSimpleTokenEnvironment()
   .then((environment) => {
     addresses = environment.addresses
-    token = environment.token
+    contract = environment.contract
     const { provider, tokenAddress } = environment
     var tokenTracker = new TokenTracker({
       userAddress: addresses[0],
@@ -114,7 +114,7 @@ test('StandardToken balance changes are emitted and symbol fetched', function (t
     return new Promise((res, rej) => { setTimeout(res, 200) })
   })
   .then(() => {
-    return token.transfer(addresses[1], '100')
+    return contract.transfer(addresses[1], '100')
   })
   .catch((reason) => {
     t.notOk(reason, 'should not throw an error')
@@ -125,12 +125,12 @@ test('StandardToken balance changes are emitted and symbol fetched', function (t
 
 test('StandardToken non balance changes are not emitted', function (t) {
   let addresses
-  let token
+  let contract
   let tokenTracker
   setupSimpleTokenEnvironment()
   .then((environment) => {
     addresses = environment.addresses
-    token = environment.token
+    contract = environment.contract
     const { provider, tokenAddress } = environment
     tokenTracker = new TokenTracker({
       userAddress: addresses[0],
@@ -158,7 +158,7 @@ test('StandardToken non balance changes are not emitted', function (t) {
     return new Promise((res, rej) => { setTimeout(res, 200) })
   })
   .then(() => {
-    return token.transfer(addresses[1], '0')
+    return contract.transfer(addresses[1], '0')
   })
   .then(() => {
     var a = new Promise((res, rej) => { setTimeout(res, 200) })

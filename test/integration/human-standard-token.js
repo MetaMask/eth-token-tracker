@@ -2,8 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const test = require('tape')
 const ganache = require('ganache')
-const { Web3Provider } = require('@ethersproject/providers')
-const { ContractFactory } = require('@ethersproject/contracts')
+const { ContractFactory, BrowserProvider } = require('ethers')
 const solc = require('solc')
 const TokenTracker = require('../../lib')
 
@@ -19,12 +18,12 @@ const EXPECTED_SYMBOL = 'EXP'
 let addresses = []
 let token, tokenAddress, tracked
 
-const ethersProvider = new Web3Provider(provider)
+const ethersProvider = new BrowserProvider(provider)
 
 test('testrpc has addresses', function (t) {
   ethersProvider.listAccounts()
   .then((accounts) => {
-    addresses = accounts
+    addresses = accounts.map(account => account.address)
     t.ok(accounts, 'loaded accounts')
     t.end()
   })
@@ -32,19 +31,25 @@ test('testrpc has addresses', function (t) {
 
 test('HumanStandardToken publishing token & checking balance', function (t) {
   const abi = JSON.parse(HumanStandardDeployer.interface)
-  const factory = new ContractFactory(abi, HumanStandardDeployer.bytecode, ethersProvider.getSigner(addresses[0]))
-
-  factory.deploy('1000', 'DanBucks', '2', SET_SYMBOL, {
-    gasLimit: '3000000',
-    gasPrice: '875000000',
+  ethersProvider.getSigner(addresses[0])
+  .then((signer) => {
+    const factory = new ContractFactory(abi, HumanStandardDeployer.bytecode, signer)
+    return factory.deploy('1000', 'DanBucks', '2', SET_SYMBOL, {
+      gasLimit: '3000000',
+      gasPrice: '875000000',
+    })
   })
   .then((contract) => {
-    t.ok(contract.deployTransaction.hash, 'publishes a txHash')
-    return contract.deployed()
+    t.ok(contract.deploymentTransaction().hash, 'publishes a txHash')
+    return contract.waitForDeployment()
   })
   .then((deployedContract) => {
     token = deployedContract
-    tokenAddress = token.address
+    return deployedContract.getAddress()
+  })
+  .then((address) => {
+    t.ok(address, 'should have an address')
+    tokenAddress = address
     return token.balanceOf(addresses[0])
   })
   .then((balance) => {
