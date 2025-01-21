@@ -6,10 +6,11 @@ const solc = require('solc')
 const TokenTracker = require('../../lib')
 const BN = require('bn.js')
 const util = require('../../lib/util')
-const { ContractFactory, BrowserProvider } = require('ethers')
+const { ContractFactory } = require('@ethersproject/contracts')
+const { Web3Provider } = require('@ethersproject/providers')
 
 const provider = ganache.provider()
-const ethersProvider = new BrowserProvider(provider)
+const ethersProvider = new Web3Provider(provider)
 let count = 0
 
 const source = fs.readFileSync(path.resolve(__dirname, '..', 'contracts/ZeppelinToken.sol')).toString();
@@ -18,12 +19,12 @@ const compiled = solc.compile(source, 1)
 const SimpleTokenDeployer = compiled.contracts[':TutorialToken']
 
 let addresses = []
-let token, tokenAddress, tracked
+let tokenAddress, tracked
 
 test('testrpc has addresses', function (t) {
   ethersProvider.listAccounts()
   .then((accounts) => {
-    addresses = accounts.map(account => account.address)
+    addresses = accounts
     t.ok(accounts, 'loaded accounts')
     t.end()
   })
@@ -97,26 +98,20 @@ function generateTestWithParams(opts = {}) {
   test(`Generated token precision test ${++count}`, function (t) {
     const abi = JSON.parse(SimpleTokenDeployer.interface)
     const owner = addresses[0]
-    ethersProvider.getSigner(owner).then((signer) => {
-      const factory = new ContractFactory(abi, SimpleTokenDeployer.bytecode, signer)
+    const factory = new ContractFactory(abi, SimpleTokenDeployer.bytecode, ethersProvider.getSigner(owner))
 
-      return factory.deploy(qty, precision, {
-        gasLimit: 3000000,
-        gasPrice: 875000000
-      })
+    factory.deploy(qty, precision, {
+      gasLimit: 3000000,
+      gasPrice: 875000000
     })
-    .then((contract) => {
-      t.ok(contract.deploymentTransaction().hash, 'publishes a txHash')
-      return contract.waitForDeployment()
+    .then((token) => {
+      t.ok(token.deployTransaction.hash, 'publishes a txHash')
+      return token.deployed()
     })
-    .then((deployedContract) => {
-      token = deployedContract
-      return deployedContract.getAddress()
-    })
-    .then((address) => {
-      t.ok(address, 'should have an address')
-      tokenAddress = address
-      return token.balanceOf(owner)
+    .then((deployedToken) => {
+      t.ok(deployedToken.address, 'should have an address')
+      tokenAddress = deployedToken.address
+      return deployedToken.balanceOf(owner)
     })
     .then((balance) => {
       t.equal(balance.toString(), qty, 'owner should have all')

@@ -38,11 +38,13 @@
     "/lib"
   ],
   "dependencies": {
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/contracts": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
     "@metamask/eth-block-tracker": "^11.0.3",
     "@metamask/safe-event-emitter": "^3.0.0",
     "bn.js": "^5.2.1",
     "deep-equal": "^2.2.0",
-    "ethers": "^6.13.5",
     "human-standard-token-abi": "^2.0.0"
   },
   "devDependencies": {
@@ -72,9 +74,7 @@
       "ganache>secp256k1": true,
       "ganache>utf-8-validate": true,
       "ganache>@trufflesuite/uws-js-unofficial>bufferutil": false,
-      "ganache>@trufflesuite/uws-js-unofficial>utf-8-validate": false,
-      "ethers>ws>bufferutil": false,
-      "ethers>ws>utf-8-validate": false
+      "ganache>@trufflesuite/uws-js-unofficial>utf-8-validate": false
     }
   }
 }

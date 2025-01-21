@@ -17,7 +17,7 @@ test('token with empty options', function (t) {
 
 test('token with just contract option', async function (t) {
   t.plan(1)
-  const { contract } = await setupSimpleTokenEnvironment()
+  const { token: contract } = await setupSimpleTokenEnvironment()
   t.throws(() => (new Token({ contract })), 'should throw if missing owner parameter')
   t.end()
 })
@@ -31,7 +31,7 @@ test('token with just owner option', async function (t) {
 
 test('token with minimal options', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     contract,
     owner: addresses[0],
@@ -54,7 +54,7 @@ test('token with minimal options', async function (t) {
 
 test('token with address', async function (t) {
   t.plan(1)
-  const { addresses, contract, tokenAddress } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract, tokenAddress } = await setupSimpleTokenEnvironment()
   const token = new Token({
     address: tokenAddress,
     contract,
@@ -68,7 +68,7 @@ test('token with address', async function (t) {
 
 test('token with symbol', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     contract,
     owner: addresses[0],
@@ -82,7 +82,7 @@ test('token with symbol', async function (t) {
 
 test('token with number balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: 10,
     contract,
@@ -96,7 +96,7 @@ test('token with number balance', async function (t) {
 
 test('token with unprefixed hex string balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: 'f',
     contract,
@@ -110,7 +110,7 @@ test('token with unprefixed hex string balance', async function (t) {
 
 test('token with decimal string balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: '10',
     contract,
@@ -124,7 +124,7 @@ test('token with decimal string balance', async function (t) {
 
 test('token with BN.js balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: new BN(10),
     contract,
@@ -138,7 +138,7 @@ test('token with BN.js balance', async function (t) {
 
 test('token with array balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: [10],
     contract,
@@ -152,7 +152,7 @@ test('token with array balance', async function (t) {
 
 test('token with prefixed hex string balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   t.throws(
     () => {
       new Token({
@@ -168,7 +168,7 @@ test('token with prefixed hex string balance', async function (t) {
 
 test('token with invalid string balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   t.throws(
     () => {
       new Token({
@@ -184,7 +184,7 @@ test('token with invalid string balance', async function (t) {
 
 test('token with zero balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: 0,
     contract,
@@ -198,7 +198,7 @@ test('token with zero balance', async function (t) {
 
 test('token with empty string balance', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     balance: '',
     contract,
@@ -212,7 +212,7 @@ test('token with empty string balance', async function (t) {
 
 test('token with decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: 10,
     contract,
@@ -226,7 +226,7 @@ test('token with decimals', async function (t) {
 
 test('token with string decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: '10',
     contract,
@@ -240,7 +240,7 @@ test('token with string decimals', async function (t) {
 
 test('token with unprefixed hex string decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   t.throws(
     () => {
       new Token({
@@ -256,7 +256,7 @@ test('token with unprefixed hex string decimals', async function (t) {
 
 test('token with prefixed hex string decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   t.throws(
     () => {
       new Token({
@@ -272,7 +272,7 @@ test('token with prefixed hex string decimals', async function (t) {
 
 test('token with invalid string decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   t.throws(
     () => {
       new Token({
@@ -288,7 +288,7 @@ test('token with invalid string decimals', async function (t) {
 
 test('token with zero decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: 0,
     contract,
@@ -302,7 +302,7 @@ test('token with zero decimals', async function (t) {
 
 test('token with empty string decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: '',
     contract,
@@ -316,7 +316,7 @@ test('token with empty string decimals', async function (t) {
 
 test('token with BN.js decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: new BN(10),
     contract,
@@ -330,7 +330,7 @@ test('token with BN.js decimals', async function (t) {
 
 test('token with array decimals', async function (t) {
   t.plan(1)
-  const { addresses, contract } = await setupSimpleTokenEnvironment()
+  const { addresses, token: contract } = await setupSimpleTokenEnvironment()
   const token = new Token({
     decimals: [10],
     contract,
