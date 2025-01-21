@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [10.0.2]
+
+### Uncategorized
+
+- feat: replace `@metamask/ethjs-{contract,query}` packages with `@ethersproject` for EIP1193 compatibility ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+
 ## [10.0.1]
 
 ### Changed
@@ -154,7 +160,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'mkdirp' and 'minimist' to address security advisory (#27)
 - Update 'kind-of' to address security advisory (#28)
 
-[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.1...HEAD
+[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.2...HEAD
+[10.0.2]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.1...v10.0.2
 [10.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.0...v10.0.1
 [10.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v9.0.0...v10.0.0
 [9.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...v9.0.0
