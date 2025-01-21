@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [10.0.2]
 
-### Uncategorized
+### Fixed
 
-- feat: replace `@metamask/ethjs-{contract,query}` packages with `@ethersproject` for EIP1193 compatibility ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+- Replace `@metamask/ethjs-{contract,query}` packages with `@ethersproject` for EIP1193 compatibility ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
 
 ## [10.0.1]
 
