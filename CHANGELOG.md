@@ -9,9 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [10.0.2]
 
+### Changed
+
+- Replace `@metamask/ethjs-contract` and `@metamask/ethjs-query` with `@ethersproject/bignumber` ^5.7.0, `@ethersproject/contracts` ^5.7.0, and `@ethersproject/providers` ^5.7.2 ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+
 ### Fixed
 
-- Replace `@metamask/ethjs-{contract,query}` packages with `@ethersproject` for EIP1193 compatibility ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+- `TokenTracker` now supports passing in an EIP-1193-compatible provider ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
 
 ## [10.0.1]
 
