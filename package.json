@@ -38,9 +38,10 @@
     "/lib"
   ],
   "dependencies": {
+    "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/contracts": "^5.7.0",
+    "@ethersproject/providers": "^5.7.2",
     "@metamask/eth-block-tracker": "^11.0.3",
-    "@metamask/ethjs-contract": "^0.4.1",
-    "@metamask/ethjs-query": "^0.7.1",
     "@metamask/safe-event-emitter": "^3.0.0",
     "bn.js": "^5.2.1",
     "deep-equal": "^2.2.0",
@@ -55,7 +56,7 @@
     "@lavamoat/allow-scripts": "^2.3.1",
     "@lavamoat/preinstall-always-fail": "^2.0.0",
     "@metamask/auto-changelog": "^3.4.3",
-    "ganache": "7.3.1",
+    "ganache": "7.9.2",
     "solc": "^0.4.26",
     "tape": "^5.6.1"
   },
@@ -71,7 +72,9 @@
       "ganache>keccak": true,
       "ganache>leveldown": true,
       "ganache>secp256k1": true,
-      "ganache>utf-8-validate": true
+      "ganache>utf-8-validate": true,
+      "ganache>@trufflesuite/uws-js-unofficial>bufferutil": false,
+      "ganache>@trufflesuite/uws-js-unofficial>utf-8-validate": false
     }
   }
 }
