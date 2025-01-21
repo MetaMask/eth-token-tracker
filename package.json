@@ -1,6 +1,6 @@
 {
   "name": "@metamask/eth-token-tracker",
-  "version": "10.0.1",
+  "version": "10.0.2",
   "description": "A module for tracking Ethereum token balances over block changes.",
   "main": "dist/index.js",
   "engines": {

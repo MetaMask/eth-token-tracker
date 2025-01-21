@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [10.0.2]
+
+### Changed
+
+- Replace `@metamask/ethjs-contract` and `@metamask/ethjs-query` with `@ethersproject/bignumber` ^5.7.0, `@ethersproject/contracts` ^5.7.0, and `@ethersproject/providers` ^5.7.2 ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+
+### Fixed
+
+- `TokenTracker` now supports passing in an EIP-1193-compatible provider ([#155](https://github.com/MetaMask/eth-token-tracker/pull/155))
+
 ## [10.0.1]
 
 ### Changed
@@ -154,7 +164,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update 'mkdirp' and 'minimist' to address security advisory (#27)
 - Update 'kind-of' to address security advisory (#28)
 
-[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.1...HEAD
+[Unreleased]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.2...HEAD
+[10.0.2]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.1...v10.0.2
 [10.0.1]: https://github.com/MetaMask/eth-token-tracker/compare/v10.0.0...v10.0.1
 [10.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v9.0.0...v10.0.0
 [9.0.0]: https://github.com/MetaMask/eth-token-tracker/compare/v8.0.0...v9.0.0
